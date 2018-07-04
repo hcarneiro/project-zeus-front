@@ -4,6 +4,12 @@
   "description": "My first Nuxt.js project",
   "author": "Hugo Carneiro <hello@thegeekdeveloper.com>",
   "private": true,
+  "config": {
+    "nuxt": {
+      "host": "0.0.0.0",
+      "port": "3333"
+    }
+  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
