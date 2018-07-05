@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "ajv": "^6.5.2",
+    "hoek": "^5.0.3",
     "nuxt": "^1.0.0"
   },
   "devDependencies": {
