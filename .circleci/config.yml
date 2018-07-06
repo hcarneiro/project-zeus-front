@@ -5,10 +5,6 @@
 version: 2
 
 deployment:
-  staging:
-    branch: master
-    heroku:
-      appname: polar-woodland-61016
   production:
     branch: production
     heroku:
