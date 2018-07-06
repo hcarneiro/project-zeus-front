@@ -16,10 +16,10 @@ jobs:
 
     steps:
       - checkout
-      - run: echo "A first hello"
+      - run: echo "All done!"
 
 deployment:
-  staging:
+  production:
     branch: production
     heroku:
       appname: polar-woodland-61016
