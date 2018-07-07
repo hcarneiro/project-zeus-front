@@ -1,0 +1,18 @@
+.page-container,
+.sidebar-component,
+.view-component {
+  height: 100%;
+}
+
+.page-container {
+  display: flex;
+}
+
+.sidebar-component {
+  width: 350px;
+  min-width: 350px;
+}
+
+.view-component {
+  width: 100%;
+}
