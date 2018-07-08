@@ -1,17 +1,6 @@
 // Import custom font from Google
 @import url('https://fonts.googleapis.com/css?family=Raleway:100,100i,300,300i,400,400i,600,600i,700,700i,800,800i');
 
-html,
-body,
-#__nuxt,
-#__layout {
-  height: 100%;
-}
-
-body {
-  font-family: 'Raleway', 'Helvetica', sans-serif;
-}
-
 // Override / set color variables
 $white: #fff;
 $black: #000;
@@ -24,3 +13,62 @@ $red: #e5001e;
 $brand-primary: #03A9F4;
 $brand-secondary: #455A64;
 $brand-tertiary: #009688;
+
+// Base styles
+html,
+body,
+#__nuxt,
+#__layout {
+  height: 100%;
+}
+
+body {
+  font-family: 'Raleway', 'Helvetica', sans-serif;
+}
+
+.custom-btn {
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 50px;
+
+  &.btn-primary {
+    border-color: $brand-primary;
+    color: $brand-primary;
+
+    &:hover,
+    &:active,
+    &:active:hover,
+    &:active:focus,
+    &:not(:disabled):not(.disabled):active {
+      background-color: $brand-primary;
+      border-color: $brand-primary;
+      color: $white;
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  &.btn-default {
+    border-color: $brand-secondary;
+    color: $brand-secondary;
+
+    &:hover,
+    &:active,
+    &:active:hover,
+    &:active:focus,
+    &:not(:disabled):not(.disabled):active {
+      background-color: $brand-secondary;
+      border-color: $brand-secondary;
+      color: lighten($black, 70%);
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}
+
+
+
