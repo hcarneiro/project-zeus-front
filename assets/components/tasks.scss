@@ -1,0 +1,95 @@
+.tasks-view-holder {
+  position: relative;
+  padding-top: 69px;
+
+  .tasks-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid lighten($black, 92%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+
+    .tasks-title {
+      margin: 0;
+    }
+  }
+
+  .tasks-container {
+    margin-left: -30px;
+    margin-right: -30px;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      .task-item {
+        position: relative;
+        cursor: pointer;
+        padding-left: 60px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+        &:hover {
+          background-color: lighten($black, 98%);
+
+          .rearrange {
+            opacity: 1;
+          }
+        }
+
+        .rearrange {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          opacity: 0;
+          width: 30px;
+          height: 30px;
+          line-height: 30px;
+          margin-top: -15px;
+          color: lighten($black, 80%);
+
+          &:hover {
+            cursor: -webkit-grab;
+          }
+        }
+
+        .markable {
+          position: absolute;
+          top: 50%;
+          left: 30px;
+          width: 30px;
+          height: 30px;
+          line-height: 30px;
+          margin-top: -15px;
+          font-size: 1.2em;
+          transition: color .15s ease-in-out;
+
+          &.fas {
+            color: $green;
+
+            &:hover {
+              color: lighten($black, 60%);
+            }
+          }
+
+          &.far {
+            color: lighten($black, 60%);
+
+            &:hover {
+              color: rgba($green, 0.8);
+            }
+          }
+        }
+
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
+}

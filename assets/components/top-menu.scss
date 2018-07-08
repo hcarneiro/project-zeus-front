@@ -1,0 +1,131 @@
+.main-top-header {
+  width: 100%;
+  padding: 20px 30px;
+  border-bottom: 1px solid lighten($black, 92%);
+  display: flex;
+  justify-content: space-between;
+  background-color: $white;
+
+  .top-header-controls {
+    display: flex;
+  }
+
+  .header-search-holder {
+    position: relative;
+
+    i {
+      position: absolute;
+      top: 0;
+      text-align: center;
+      width: 38px;
+      height: 38px;
+      line-height: 38px;
+      z-index: 1;
+
+      &.search-icon {
+        left: 0;
+        color: lighten($black, 30%);
+      }
+
+      &.clear-icon {
+        display: none;
+        right: 0;
+        opacity: 0.3;
+        cursor: pointer;
+      }
+    }
+
+    .header-search {
+      border-radius: 50px;
+      width: 300px;
+      padding-left: 38px;
+      padding-right: 38px;
+      border: 1px solid lighten($black, 80%);
+
+      &:hover,
+      &:focus {
+        box-shadow: none;
+        border-color: $brand-primary;
+      }
+
+      &:focus {
+        + .clear-icon {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .invite-holder {
+    position: relative;
+    border: 1px solid lighten($black, 80%);
+    border-radius: 50px;
+    line-height: 36px;
+    padding: 0 15px 0 36px;
+    cursor: pointer;
+    color: lighten($black, 30%);
+
+    &:hover,
+    &:focus,
+    &:active,
+    &:active:hover,
+    &:active:focus {
+      background-color: lighten($black, 90%);
+    }
+
+    i {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 38px;
+      height: 38px;
+      line-height: 36px;
+      text-align: center;
+      opacity: 0.6;
+    }
+  }
+
+  .notification-holder {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    font-size: 1.7em;
+    cursor: pointer;
+    margin-left: 50px;
+
+    .notification-alert {
+      position: absolute;
+      z-index: 1;
+      top: 5px;
+      right: 5px;
+      background-color: $red;
+      border: 3px solid $white;
+      width: 14px;
+      height: 14px;
+      border-radius: 14px;
+    }
+
+    i {
+      transform: rotate(20deg);
+      opacity: 0.8;
+    }
+  }
+
+  .profile-holder {
+    width: 38px;
+    height: 38px;
+    border-radius: 38px;
+    border: 1px solid lighten($black, 80%);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    margin-left: 25px;
+
+    img {
+      height: 100%;
+      cursor: pointer;
+    }
+  }
+}
