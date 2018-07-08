@@ -3,13 +3,13 @@
     <div class="sidebar-component">
       <side-bar/>
     </div>
-    <div class="view-component">
-    </div>
+    <main-view/>
   </div>
 </template>
 
 <script>
 import SideBar from '~/components/SideBar.vue'
+import MainView from '~/components/MainView.vue'
 
 export default {
   data() {
@@ -17,7 +17,8 @@ export default {
     }
   },
   components: {
-    SideBar
+    SideBar,
+    MainView
   }
 }
 </script>
