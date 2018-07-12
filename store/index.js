@@ -1,18 +1,23 @@
 import Vuex from 'vuex'
+import axios from '~/plugins/axios.js'
 
-const store = () => {
+const createStore = () => {
   return new Vuex.Store({
     state: {
-      ui: {
-        taskTitle: ''
-      }
+      users: []
     },
     mutations: {
-      setTaskTitle (state, title = '') {
-        state.ui.taskTitle = title
+      setUsers: (state, users) => {
+        state.users = users
+      }
+    },
+    actions: {
+      async getUsers ({commit}) {
+        let {data} = await axios.get('/api/users')
+        commit('setUsers', data)
       }
     }
   })
 }
 
-export default store
+export default createStore
