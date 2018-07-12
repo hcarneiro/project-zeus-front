@@ -5,34 +5,39 @@
     </div>
     <hr>
     <ul class="sidebar-list">
-      <li class="sidebar-list-item" @click="$store.commit('setTaskTitle', 'Today')">
+      <nuxt-link class="sidebar-list-item" active-class="active" tag="li" :to="'/today'">
         <i class="far fa-star fa-fw"></i> Today
-      </li>
-      <li class="sidebar-list-item" @click="$store.commit('setTaskTitle', 'Upcoming')">
+      </nuxt-link>
+      <nuxt-link class="sidebar-list-item" active-class="active" tag="li" :to="'/upcoming'">
         <i class="far fa-calendar-alt fa-fw"></i> Upcoming
-      </li>
-      <li class="sidebar-list-item" @click="$store.commit('setTaskTitle', 'Completed')">
+      </nuxt-link>
+      <nuxt-link class="sidebar-list-item" active-class="active" tag="li" :to="'/completed'">
         <i class="fas fa-check fa-fw"></i> Completed
-      </li>
-      <li class="sidebar-list-item" @click="$store.commit('setTaskTitle', 'Trash')">
+      </nuxt-link>
+      <nuxt-link class="sidebar-list-item" active-class="active" tag="li" :to="'/trash'">
         <i class="far fa-trash-alt fa-fw"></i> Trash
-      </li>
+      </nuxt-link>
     </ul>
-    <div class="sidebar-title-separator">Projects</div>
-    <ul class="sidebar-list">
-      <li class="sidebar-list-item" @click="$store.commit('setTaskTitle', 'My first project')">
-        <i class="fas fa-map-pin fa-fw"></i> My first project
-      </li>
-    </ul>
-    <div class="sidebar-title-separator">Personal</div>
-    <ul class="sidebar-list">
-      <li class="sidebar-list-item" @click="$store.commit('setTaskTitle', 'Shopping')">
-        <i class="fas fa-list-ul fa-fw"></i> Shopping
-      </li>
-      <li class="sidebar-list-item" @click="$store.commit('setTaskTitle', 'Home decor')">
-        <i class="fas fa-list-ul fa-fw"></i> Home decor
-      </li>
-    </ul>
+    <template v-if="projects.length">
+      <div class="sidebar-title-separator">Projects</div>
+      <ul class="sidebar-list">
+        <template v-for="project in projects">
+          <nuxt-link class="sidebar-list-item" active-class="active" tag="li" :to="'/projects/' + project.slug" :key="project.id">
+            <i class="fas fa-map-pin fa-fw"></i>{{ project.name }}
+          </nuxt-link>
+        </template>
+      </ul>
+    </template>
+    <template v-if="projects.length">
+      <div class="sidebar-title-separator">Personal</div>
+      <ul class="sidebar-list">
+        <template v-for="personalTaskList in personalTasksLists">
+          <nuxt-link class="sidebar-list-item" active-class="active" tag="li" :to="'/personal/' + personalTaskList.slug" :key="personalTaskList.id">
+            <i class="fas fa-list-ul fa-fw"></i>{{ personalTaskList.name }}
+          </nuxt-link>
+        </template>
+      </ul>
+    </template>
   </div>
 </template>
 
@@ -40,6 +45,8 @@
 export default {
   data() {
     return {
+      projects: [],
+      personalTasksLists: []
     }
   }
 }
