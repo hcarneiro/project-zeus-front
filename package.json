@@ -1,7 +1,7 @@
 {
-  "name": "hugodesigns",
+  "name": "project-zeus-front",
   "version": "1.0.0",
-  "description": "My first Nuxt.js project",
+  "description": "The project manager that is easy and useful",
   "author": "Hugo Carneiro <hello@thegeekdeveloper.com>",
   "private": true,
   "config": {
