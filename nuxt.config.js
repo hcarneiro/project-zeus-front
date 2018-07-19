@@ -34,11 +34,16 @@ module.exports = {
   router: {
     middleware: ['home']
   },
+  modules: [
+    '@nuxtjs/axios',
+  ],
+  axios: {
+    // proxyHeaders: false
+  },
   /*
   ** Build configuration
   */
   build: {
-    vendor: ['axios'],
     /*
     ** Run ESLint on save
     */
@@ -53,10 +58,6 @@ module.exports = {
       }
     }
   },
-  serverMiddleware: [
-    // API middleware
-    '~/api/app'
-  ],
   css: [
     '@/node_modules/bootstrap/scss/bootstrap.scss',
     '@/node_modules/@fortawesome/fontawesome-free/css/all.css',
