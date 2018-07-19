@@ -12,7 +12,7 @@
           <nuxt-link class="task-item" tag="li" :key="users.id" :to="'/users/'+users.id">
             <i class="fas fa-grip-vertical fa-fw rearrange"></i>
             <i class="far fa-check-circle markable"></i>
-            <p>{{ users.name }}</p>
+            <p>{{ users.firstName }} {{ users.lastName }}</p>
           </nuxt-link>
         </template>
       </ul>
@@ -21,11 +21,11 @@
 </template>
 
 <script>
-import axios from '~/plugins/axios'
+import users from '~/api/routes/users'
 
 export default {
   async asyncData () {
-    let { data } = await axios.get('/api/users')
+    let { data } = await users.getUsers()
     return { users: data }
   },
   head () {
