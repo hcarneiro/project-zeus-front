@@ -30,7 +30,6 @@
 
 <script>
 import TopMenu from '~/components/TopMenu.vue'
-import users from '~/api/routes/users'
 
 export default {
   data() {
