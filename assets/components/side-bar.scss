@@ -3,25 +3,20 @@
   height: 100%;
 
   .sidebar-logo {
-    h1 {
-      color: $brand-secondary;
-      font-weight: 700;
-      font-size: 3em;
-
-      span {
-        color: $brand-primary;
-        font-size: 1.27em;
-      }
-    }
+    width: 40px;
+    height: 40px;
+    background-color: #e1e1e1;
+    border-radius: 40px;
   }
 
   .sidebar-list {
     list-style: none;
     padding: 0;
     font-size: 0.9em;
+    margin-top: 20px;
 
     .sidebar-list-item {
-      padding: 12px 0;
+      padding: 20px 0;
       cursor: pointer;
       color: lighten($black, 65%);
 

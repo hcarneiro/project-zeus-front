@@ -1,15 +1,13 @@
 <template>
   <div class="main-top-header">
     <div class="top-header-controls">
-      <div class="header-search-holder">
-        <i class="fas fa-search search-icon"></i>
-        <input type="search" class="form-control header-search">
-        <i class="fas fa-times clear-icon"></i>
-      </div>
-    </div>
-    <div class="top-header-controls">
-      <div class="btn invite-holder">
-        <i class="fas fa-plus-circle"></i> Invite team members
+      <div class="header-search-holder" v-on:click="activateSearch" v-bind:class="{ active: searchIsActive }">
+        <div class="search-holder">
+          <i class="fas fa-search search-icon"></i>
+          <input type="search" class="form-control header-search" placeholder="Type to search" v-model="searchInput" v-bind:class="{ searching: isSearching }">
+          <i class="fas fa-times clear-icon" v-on:click.stop="closeSearch"></i>
+        </div>
+
       </div>
       <div class="notification-holder">
         <div class="notification-alert"></div>
@@ -26,6 +24,27 @@
 export default {
   data() {
     return {
+      searchIsActive: false,
+      searchInput: '',
+      isSearching: false
+    }
+  },
+  watch: {
+    searchInput(value) {
+      if (value.length) {
+        this.isSearching = true
+      } else {
+        this.isSearching = false
+      }
+    }
+  },
+  methods: {
+    activateSearch() {
+      this.searchIsActive = true
+    },
+    closeSearch() {
+      this.searchInput = ''
+      this.searchIsActive = false
     }
   }
 }

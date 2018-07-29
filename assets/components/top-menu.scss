@@ -1,9 +1,8 @@
 .main-top-header {
   width: 100%;
-  padding: 20px 30px;
+  padding: 30px 30px;
   display: flex;
-  justify-content: space-between;
-  background-color: $white;
+  justify-content: flex-end;
 
   .top-header-controls {
     display: flex;
@@ -11,88 +10,83 @@
 
   .header-search-holder {
     position: relative;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 40px;
+    text-align: center;
+    font-size: 1em;
+    cursor: pointer;
+    margin-left: 50px;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, .3);
+    color: lighten($black, 70%);
+    background-color: $white;
+    transition: width .15s ease-in-out;
+    overflow: hidden;
 
-    i {
-      position: absolute;
-      top: 0;
-      text-align: center;
-      width: 38px;
-      height: 38px;
-      line-height: 38px;
-      z-index: 1;
+    .search-holder {
+      i {
+        position: absolute;
+        top: 0;
+        text-align: center;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        z-index: 1;
 
-      &.search-icon {
-        left: 0;
-        color: lighten($black, 30%);
+        &.search-icon {
+          left: 0;
+          color: lighten($black, 70%);
+        }
+
+        &.clear-icon {
+          display: none;
+          right: 0;
+          opacity: 0.3;
+          cursor: pointer;
+        }
       }
 
-      &.clear-icon {
+      .header-search {
         display: none;
-        right: 0;
-        opacity: 0.3;
-        cursor: pointer;
-      }
-    }
+        height: 40px;
+        border-radius: 50px;
+        width: 300px;
+        padding-left: 40px;
+        padding-right: 40px;
+        border: none;
 
-    .header-search {
-      border-radius: 50px;
-      width: 300px;
-      padding-left: 38px;
-      padding-right: 38px;
-      border: 1px solid lighten($black, 80%);
+        &:hover,
+        &:focus {
+          box-shadow: none;
+        }
 
-      &:hover,
-      &:focus {
-        box-shadow: none;
-        border-color: $brand-primary;
-      }
-
-      &:focus {
-        + .clear-icon {
-          display: block;
+        &.searching {
+          + .clear-icon {
+            display: block;
+          }
         }
       }
     }
-  }
 
-  .invite-holder {
-    position: relative;
-    border: 1px solid lighten($black, 80%);
-    border-radius: 50px;
-    line-height: 36px;
-    padding: 0 15px 0 36px;
-    cursor: pointer;
-    color: lighten($black, 30%);
+    &.active {
+      width: 300px;
 
-    &:hover,
-    &:focus,
-    &:active,
-    &:active:hover,
-    &:active:focus {
-      background-color: lighten($black, 90%);
-    }
-
-    i {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 38px;
-      height: 38px;
-      line-height: 36px;
-      text-align: center;
-      opacity: 0.6;
+      .header-search {
+        display: block;
+      }
     }
   }
 
   .notification-holder {
     position: relative;
-    width: 38px;
-    height: 38px;
-    line-height: 38px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
     text-align: center;
     font-size: 1.7em;
     cursor: pointer;
-    margin-left: 50px;
+    margin-left: 30px;
 
     .notification-alert {
       position: absolute;
@@ -113,14 +107,14 @@
   }
 
   .profile-holder {
-    width: 38px;
-    height: 38px;
-    border-radius: 38px;
-    border: 1px solid lighten($black, 80%);
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
     overflow: hidden;
     display: flex;
     justify-content: center;
-    margin-left: 25px;
+    margin-left: 30px;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, .3);
 
     img {
       height: 100%;

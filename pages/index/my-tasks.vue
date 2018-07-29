@@ -1,7 +1,7 @@
 <template>
   <div class="tasks-view-holder">
     <div class="tasks-header">
-      <h3 class="tasks-title">Today</h3>
+      <h3 class="tasks-title">My Tasks</h3>
       <div class="tasks-controls">
         <div class="btn btn-primary custom-btn">Add task</div>
       </div>
