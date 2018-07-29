@@ -1,8 +1,13 @@
 .main-top-header {
   width: 100%;
-  padding: 30px 30px;
   display: flex;
-  justify-content: flex-end;
+  padding: 30px;
+  align-items: center;
+  justify-content: space-between;
+
+  .tasks-title {
+    margin: 0;
+  }
 
   .top-header-controls {
     display: flex;

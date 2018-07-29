@@ -1,8 +1,6 @@
 <template>
   <div class="main-view-holder">
-    <div class="canvas-container">
-      <nuxt-child/>
-    </div>
+    <nuxt-child/>
   </div>
 </template>
 

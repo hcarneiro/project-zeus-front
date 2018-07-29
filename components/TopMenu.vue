@@ -1,5 +1,6 @@
 <template>
   <div class="main-top-header">
+    <h3 class="tasks-title">{{ title }}</h3>
     <div class="top-header-controls">
       <div class="header-search-holder" v-on:click="activateSearch" v-bind:class="{ active: searchIsActive }">
         <div class="search-holder">
@@ -7,7 +8,6 @@
           <input type="search" class="form-control header-search" placeholder="Type to search" v-model="searchInput" v-bind:class="{ searching: isSearching }">
           <i class="fas fa-times clear-icon" v-on:click.stop="closeSearch"></i>
         </div>
-
       </div>
       <div class="notification-holder">
         <div class="notification-alert"></div>
@@ -28,6 +28,9 @@ export default {
       searchInput: '',
       isSearching: false
     }
+  },
+  props: {
+    title: String
   },
   watch: {
     searchInput(value) {

@@ -7,9 +7,10 @@ $black: #000;
 $green: #00e389;
 $blue: #3399ff;
 $orange: #f26c22;
-$yellow: #ffd925;
+$yellow: #ffbf25;
 $red: #e5001e;
 $dark-grey: #333333;
+$light-grey: lighten($black, 60%); // #999999
 
 $brand-primary: #03A9F4;
 $brand-secondary: #455A64;
