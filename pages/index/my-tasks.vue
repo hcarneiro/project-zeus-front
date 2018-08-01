@@ -30,48 +30,13 @@
 
 <script>
 import TopMenu from '~/components/TopMenu.vue'
+import projects from '~/api/routes/projects'
 
 export default {
-  data() {
+  async asyncData () {
+    const allProjects = await projects.getProjects()
     return {
-      projects: [
-        {
-          id: 1,
-          name: 'My new project',
-          tasks: [
-            {
-              id: 10,
-              title: 'Aenean Ultricies Quam',
-              status: 'In progress',
-              dueDate: '2018-08-10'
-            }
-          ]
-        },
-        {
-          id: 2,
-          name: 'My other project',
-          tasks: [
-            {
-              id: 11,
-              title: 'Elit Cras Tellus Ipsum',
-              status: 'In progress',
-              dueDate: '2018-08-09'
-            },
-            {
-              id: 12,
-              title: 'Vestibulum Tristique Elit',
-              status: 'Overdue',
-              dueDate: '2018-08-01'
-            },
-            {
-              id: 13,
-              title: 'Nibh Consectetur',
-              status: 'On hold',
-              dueDate: '2018-08-09'
-            }
-          ]
-        }
-      ]
+      projects: allProjects
     }
   },
   head () {
