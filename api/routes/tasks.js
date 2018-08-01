@@ -1,13 +1,13 @@
 import axios from '~/plugins/axios'
 
 export default {
-  getUsers() {
-    return axios.get('/v1/users').then((response) => {
+  getTasks() {
+    return axios.get('/v1/tasks').then((response) => {
       return Promise.resolve(response.data)
     })
   },
-  getUserById(id) {
-    return axios.get(`/v1/users/${id}`).then((response) => {
+  getTasksById(id) {
+    return axios.get(`/v1/tasks/${id}`).then((response) => {
       return Promise.resolve(response.data)
     })
   }
