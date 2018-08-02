@@ -34,11 +34,8 @@ module.exports = {
   router: {
     middleware: ['home']
   },
-  modules: [
-    '@nuxtjs/axios',
-  ],
+
   plugins: [
-    '~/plugins/axios',
     '~/plugins/filters'
   ],
   /*
