@@ -2,7 +2,7 @@ import Vue from 'vue'
 import moment from 'moment'
 moment.locale()
 
-Vue.filter('dueDate', (value) => {
+Vue.filter('formatDate', (value) => {
   return moment(value).format('DD MMM YYYY')
 })
 
