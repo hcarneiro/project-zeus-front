@@ -49,7 +49,6 @@ export default {
   computed: {
     ...mapState({
       projects: state => {
-        console.log(state)
         return state.projects.list
       }
     })
