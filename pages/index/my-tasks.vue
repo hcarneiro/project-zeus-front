@@ -31,24 +31,28 @@
 
 <script>
 import TopMenu from '~/components/TopMenu.vue'
-import projects from '~/api/routes/projects'
-import tasks from '~/api/routes/tasks'
 import { orderBy } from 'lodash'
+import {mapState} from 'vuex';
 import io from 'socket.io-client'
 
 const socket = io(`http://${process.env.API_URL || 'localhost'}:${process.env.API_PORT || 5000}`)
 
 export default {
-  async asyncData () {
-    const allProjects = await projects.getProjects()
-    return {
-      projects: allProjects
-    }
+  async fetch({store}) {
+    await store.dispatch('projects/getProjects', {id: 2})
   },
   head () {
     return {
       title: 'My Tasks'
     }
+  },
+  computed: {
+    ...mapState({
+      projects: state => {
+        console.log(state)
+        return state.projects.list
+      }
+    })
   },
   components: {
     TopMenu
@@ -61,21 +65,16 @@ export default {
         "projectId": 2
       }
 
-      tasks.addTask(data)
+      this.$store.dispatch('tasks/addTask', data)
         .then((task) => {
-          socket.emit('NEW TASK', task);
+          socket.emit('NEW TASK', task)
         })
     }
   },
   mounted() {
-    socket.on('TASK', (data) => {
-      this.projects.forEach((project, i) => {
-        if (project.id === data.projectId) {
-          this.projects[i].tasks.push(data)
-          orderBy(this.projects[i].tasks, ['createdAt'], ['desc'])
-        }
-      })
-    });
+    socket.on('TASK', (task) => {
+      this.$store.commit('projects/addTask', task)
+    })
   }
 }
 </script>

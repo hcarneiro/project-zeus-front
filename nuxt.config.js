@@ -17,8 +17,8 @@ module.exports = {
       { name: 'twitter:image:alt', content: 'Your task management tool.' }
     ],
     script: [
-      { src: '~/assets/vendor/jquery/jquery-3.3.1.min.js' },
-      { src: '~/assets/vendor/bootstrap/js/bootstrap.min.js' }
+      { src: '/vendor/jquery/jquery-3.3.1.min.js' },
+      { src: '/vendor/bootstrap/js/bootstrap.min.js' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -34,7 +34,14 @@ module.exports = {
   router: {
     middleware: ['home']
   },
-
+  modules: [
+    ['@nuxtjs/axios']
+  ],
+  axios: {
+    /* set API_URL environment variable to configure access to the API
+    */
+    baseURL: `http://${process.env.API_URL || 'localhost'}:${process.env.API_PORT || 5000}`
+  },
   plugins: [
     '~/plugins/filters'
   ],
