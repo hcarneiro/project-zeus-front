@@ -17,8 +17,8 @@ module.exports = {
       { name: 'twitter:image:alt', content: 'Your task management tool.' }
     ],
     script: [
-      { src: '/vendor/jquery/jquery-3.3.1.min.js' },
-      { src: '/vendor/bootstrap/js/bootstrap.min.js' }
+      { src: '~/assets/vendor/jquery/jquery-3.3.1.min.js' },
+      { src: '~/assets/vendor/bootstrap/js/bootstrap.min.js' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
