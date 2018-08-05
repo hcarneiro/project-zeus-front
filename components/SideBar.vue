@@ -20,6 +20,9 @@
       <nuxt-link class="sidebar-list-item" active-class="active" tag="li" :to="'/trash'">
         <i class="fas fa-users fa-fw"></i> Teams
       </nuxt-link>
+      <nuxt-link class="sidebar-list-item" active-class="active" tag="li" :to="'/logout'">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </nuxt-link>
     </ul>
   </div>
 </template>

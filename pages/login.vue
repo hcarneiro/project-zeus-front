@@ -94,10 +94,6 @@ export default {
     }
   },
   mounted() {
-    if (this.$route.query.error) {
-      this.error = this.$route.query.error
-    }
-
     // Automatic log in
     this.$store.dispatch('auth/verifyUser', true).then(() => {
       this.$router.push({

@@ -32,7 +32,7 @@ module.exports = {
   ** Router configurations
   */
   router: {
-    middleware: ['home']
+    middleware: ['auth']
   },
   modules: [
     '@nuxtjs/axios'

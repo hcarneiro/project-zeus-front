@@ -38,6 +38,17 @@ export const actions = {
         return response.data
       })
   },
+  logout({commit}) {
+    return this.$axios.post(`/v1/auth/logout`)
+      .then(() => {
+        commit('setUser', undefined)
+        Cookies.remove('_auth_token')
+        commit('setAuthenticated', false)
+        commit('setAuthToken', '')
+
+        return
+      })
+  },
   onLogin({commit}, authToken, options) {
     if (!authToken) {
       throw new Error('Cannot login with no authToken')
@@ -65,8 +76,8 @@ export const actions = {
       commit('setAuthenticated', !!state.auth_token)
     }
 
-    if (!state.authenticated && !forceCheck) {
-      return 'You are not signed in. Please sign in.'
+    if (!state.authenticated && forceCheck) {
+      return Promise.reject('You are not signed in. Please sign in.')
     }
 
     const params = { _: moment().unix() }
@@ -94,5 +105,12 @@ export const actions = {
         }
         return err
       })
+  },
+  verify({state, dispatch}) {
+    if (state.verified) {
+      return Promise.resolve()
+    }
+
+    return dispatch('verifyUser')
   }
 }
