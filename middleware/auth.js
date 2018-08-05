@@ -5,11 +5,14 @@ const routesToSkipAuth = [
 ];
 
 export default function ({ store, route, redirect }) {
-  if (route.fullPath == '/') {
-    return redirect('301', '/my-tasks')
+  if (routesToSkipAuth.indexOf(route.fullPath) < 0) {
+    store.dispatch('auth/verify').then(() => {}, (err) => {
+      return redirect('301', '/login')
+    })
+    
   }
 
-  if (!store.state.auth.authenticated && routesToSkipAuth.indexOf(route.fullPath) < 0) {
-    return redirect('301', '/login')
-  }
+  if (route.fullPath == '/') {
+    return redirect('301', '/my-tasks')
+  }  
 }
