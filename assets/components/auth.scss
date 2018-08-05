@@ -1,0 +1,124 @@
+.login-page-wrapper {
+  display: flex;
+  height: 100%;
+
+  .login-panel-wrapper,
+  .decor-panel-wrapper {
+    width: 50%;
+    height: 100%;
+  }
+
+  .login-panel-wrapper {
+    overflow: auto;
+  }
+
+  .decor-panel-wrapper {
+    background-color: #fbfbfb;
+  }
+}
+.auth-holder {
+  width: 100%;
+  max-width: 65%;
+  margin: 0 auto;
+  padding: 15% 0 5%;
+
+  &.signup {
+    padding: 10% 0 5%;
+  }
+
+  .auth-form {
+    background-color: $white;
+    box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 40px 0 50px;
+
+    .auth-form-field {
+      position: relative;
+      border-bottom: 1px solid lighten($black, 90%);
+      margin: 0;
+      padding: 25px 25px 10px;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      label {
+        margin: 0;
+        padding-right: 40px;
+      }
+
+      input {
+        border: none;
+        padding: 0 40px 0 0;
+        box-shadow: none;
+        font-size: 1.2em;
+        color: $light-grey;
+
+        &:focus,
+        &:active:focus {
+          box-shadow: none;
+        }
+
+        &.valid {
+          & ~ i {
+            color: $green;
+          }
+        }
+
+        &.has-error {
+          & ~ i {
+            color: $red;
+          }
+        }
+      }
+
+      i {
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        color: lighten($black, 80%);
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: -20px;
+        transition: color 0.15s ease-in-out;
+      }
+    }
+  }
+
+  .auth-aux-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    margin-bottom: 50px;
+    font-size: 0.9em;
+
+    a {
+      color: $dark-grey;
+    }
+  }
+
+  .auth-btn-controls {
+    button {
+      min-width: 150px;
+
+      &.btn-primary {
+        box-shadow: 0px 6px 20px 0px rgba(0, 0, 0, 0.1);
+        transition: all 0.15s ease-in-out;
+
+        &:active,
+        &:hover,
+        &:active:hover {
+          box-shadow: none;
+        }
+      }
+
+      & + button {
+        margin-left: 20px;
+      }
+    }
+  }
+}

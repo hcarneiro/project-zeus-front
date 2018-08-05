@@ -1,5 +1,5 @@
 // Import custom font from Google
-@import url('https://fonts.googleapis.com/css?family=Raleway:100,100i,300,300i,400,400i,600,600i,700,700i,800,800i');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i');
 
 // Override / set color variables
 $white: #fff;
@@ -25,26 +25,35 @@ body,
 }
 
 body {
-  font-family: 'Raleway', 'Helvetica', sans-serif;
+  font-family: 'Ubuntu', 'Helvetica', sans-serif;
+  color: $dark-grey;
 }
 
-.custom-btn {
+a {
+  color: $brand-primary;
+
+  &:hover {
+    color: darken($brand-primary, 10%);
+  }
+}
+
+.btn {
   background-color: transparent;
   border: 1px solid transparent;
   border-radius: 50px;
 
   &.btn-primary {
-    border-color: $brand-primary;
-    color: $brand-primary;
+    background-color: $brand-primary;
+    border: 1px solid $brand-primary;
+    color: $white;
 
     &:hover,
     &:active,
     &:active:hover,
     &:active:focus,
     &:not(:disabled):not(.disabled):active {
-      background-color: $brand-primary;
-      border-color: $brand-primary;
-      color: $white;
+      background-color: darken($brand-primary, 10%);
+      border-color: darken($brand-primary, 10%);
     }
 
     &:focus {
@@ -52,18 +61,18 @@ body {
     }
   }
 
-  &.btn-default {
-    border-color: $brand-secondary;
-    color: $brand-secondary;
+  &.btn-secondary {
+    border: 1px solid $light-grey;
+    color: $light-grey;
 
     &:hover,
     &:active,
     &:active:hover,
     &:active:focus,
     &:not(:disabled):not(.disabled):active {
-      background-color: $brand-secondary;
-      border-color: $brand-secondary;
-      color: lighten($black, 70%);
+      background-color: $light-grey;
+      border-color: $light-grey;
+      color: $white;
     }
 
     &:focus {

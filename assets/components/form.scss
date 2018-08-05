@@ -1,0 +1,47 @@
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  min-height: 25px;
+  position: relative;
+  padding-left: 35px;
+  margin: 0;
+  cursor: pointer;
+  user-select: none;
+
+  .checkbox-mark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: $white;
+    border: 1px solid lighten($black, 90%);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.15s ease-in-out;
+
+    i {
+      color: $white;
+      line-height: 25px;
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.15s ease-in-out;
+    }
+  }
+
+  input {
+    display: none;
+
+    &:checked ~ .checkbox-mark {
+      background-color: $brand-primary;
+      border-color: $brand-primary;
+
+      i {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  }
+}
