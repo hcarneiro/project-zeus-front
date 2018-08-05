@@ -35,7 +35,7 @@ module.exports = {
     middleware: ['home']
   },
   modules: [
-    ['@nuxtjs/axios']
+    '@nuxtjs/axios'
   ],
   axios: {
     /* set API_URL environment variable to configure access to the API
