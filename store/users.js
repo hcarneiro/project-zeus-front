@@ -1,14 +1,11 @@
 export const state = () => ({
   users: [],
-  user: {},
+  currentUser: {},
 })
 
 export const mutations = {
   setUsers(state, users) {
     state.users = users
-  },
-  setUser(state, user) {
-    state.user = user
   }
 }
 
@@ -25,7 +22,7 @@ export const actions = {
     await this.$axios.get(`/v1/users/${params.id}`)
       .then((res) => {
         if (res.status === 200) {
-          commit('setUser', res.data)
+          return res.data
         }
       })
   }
