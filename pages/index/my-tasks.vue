@@ -32,7 +32,7 @@
 <script>
 import TopMenu from '~/components/TopMenu.vue'
 import { orderBy } from 'lodash'
-import {mapState} from 'vuex';
+import { mapState } from 'vuex';
 import io from 'socket.io-client'
 
 const socket = io(`http://${process.env.API_URL || 'localhost'}:${process.env.API_PORT || 5000}`)
