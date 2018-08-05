@@ -8,6 +8,13 @@ export const state = () => ({
 
 export const mutations = {
   setProjects(state, projects) {
+    projects.forEach((project, i) => {
+      const orderedTasks = orderBy(project.tasks, (task) => {
+        return new Date(task.createdAt).getTime()
+      }, ['desc'])
+      project.tasks = orderedTasks
+    })
+
     state.list = projects
   },
   setProject(state, project) {
@@ -20,7 +27,10 @@ export const mutations = {
     state.list.forEach((project, i) => {
       if (project.id === task.projectId) {
         state.list[i].tasks.push(task)
-        orderBy(state.list[i].tasks, ['createdAt'], ['desc'])
+        const orderedTasks = orderBy(state.list[i].tasks, (task) => {
+          return new Date(task.createdAt).getTime()
+        }, ['desc'])
+        state.list[i].tasks = orderedTasks
       }
     })
   }
