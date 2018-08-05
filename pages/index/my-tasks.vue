@@ -61,7 +61,8 @@ export default {
       const data = {
         "title": "Hello",
         "status": "In progress",
-        "projectId": 2
+        "projectId": 1,
+        "dueAt": "2018-08-07 00:00:00+01"
       }
 
       this.$store.dispatch('tasks/addTask', data)
