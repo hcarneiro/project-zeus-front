@@ -46,7 +46,7 @@ export const actions = {
         commit('setAuthenticated', false)
         commit('setAuthToken', '')
 
-        return
+        return Promise.resolve()
       })
   },
   onLogin({commit}, authToken, options) {
@@ -90,21 +90,20 @@ export const actions = {
     return this.$axios.get(`v1/users`, { params }).then((response) => {
       return response
     })
-      .then((response) => {
-        const user = response.data.user
-        const session = response.data.session
+    .then((response) => {
+      const user = response.data.user
+      const session = response.data.session
 
-        commit('setUser', user)
-        dispatch('onLogin', session && session.auth_token || user.auth_token)
-        return
-      })
-      .catch((err) => {
-        if (!forceCheck) {
-          // @TODO dispatch logout
-          console.log('Dispatch Logout')
-        }
-        return err
-      })
+      commit('setUser', user)
+      dispatch('onLogin', session && session.auth_token || user.auth_token)
+      return Promise.resolve()
+    })
+    .catch((err) => {
+      if (!forceCheck) {
+        dispatch('logout')
+      }
+      return Promise.reject(err)
+    })
   },
   verify({state, dispatch}) {
     if (state.verified) {
