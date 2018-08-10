@@ -9,12 +9,14 @@
 }
 
 .sidebar-component {
+  position: relative;
   width: 262px;
   min-width: 262px;
+  overflow: auto;
 }
 
 .view-component {
   position: relative;
   width: 100%;
-  background-color: #fbfbfb;
+  background-color: $secondaryBackground;
 }

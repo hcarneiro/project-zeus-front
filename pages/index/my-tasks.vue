@@ -1,36 +1,149 @@
 <template>
-  <div class="page-holder">
-    <top-menu :title="'My Tasks'"/>
-    <div class="tasks-view-holder">
-      <div class="tasks-container">
-        <button class="btn btn-primary" v-on:click.prevent="sendTask">New task</button>
-        <ul>
-          <div v-for="project in projects" :key="project.id" class="project-holder">
-            <h4 class="task-project-title">{{ project.name }}</h4>
-            <li v-for="task in project.tasks" class="task-card" :key="task.id">
-              <div class="task-controls">
-                <div class="task-status-date" v-bind:class="task.status | convertToClass">
-                  <div class="task-status">{{ task.status }}</div>
-                  <div class="task-date">{{ task.dueAt | formatDate }}</div>
-                </div>
-                <div class="task-options">
-                  <div class="btn complete-toggle">Mark as completed</div>
-                  <div class="task-more">
-                    <i class="fas fa-ellipsis-h"></i>
-                  </div>
-                </div>
-              </div>
-              <p class="task-title">{{ task.title }}</p>
-            </li>
+  <div class="tasks-view-holder">
+    <div class="tasks-heading">
+      <div class="heading-title-holder">
+        <h1>My Tasks</h1>
+        <div class="task-add" v-on:click.prevent="sendTask">
+          <i class="fas fa-plus"></i>
+        </div>
+      </div>
+      <div class="heading-filters">
+        <div class="task-filter">
+          <i class="fas fa-filter"></i>
+        </div>
+        <div class="project-type-toogle">
+          <label for="projects-filters">
+            <input type="checkbox" id="projects-filters" v-model="filterProjects"/>
+            <span class="filter-slider"></span>
+            <span class="filter-label">Projects</span>
+            <span class="filter-label">Personal</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="tasks-container">
+      <div class="lists">
+        <div class="list">
+          <div class="list-inner">
+            <header>Project name</header>
+            <div class="project-progress-bar progress">
+              <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <ul>
+              <li>Lorem ipsum dolor sit amet</li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis enim sit amet</li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis enim sit amet metus laoreet, ut condimentum</li>
+            </ul>
           </div>
-        </ul>
+        </div>
+        <div class="list">
+          <div class="list-inner">
+            <header>Header</header>
+            <div class="project-progress-bar progress">
+              <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <ul>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis enim sit amet</li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis enim sit amet metus laoreet, ut condimentum</li>
+              <li>Lorem ipsum dolor sit amet</li>
+              <li>Lorem ipsum dolor sit amet</li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis enim sit amet</li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis enim sit amet metus laoreet, ut condimentum</li>
+              <li>Lorem ipsum dolor sit amet</li>
+              <li>Lorem ipsum dolor sit amet</li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis enim sit amet</li>
+              <li>Lorem ipsum dolor sit amet</li>
+            </ul>
+          </div>
+        </div>
+        <div class="list">
+          <div class="list-inner">
+            <header>Another List</header>
+            <div class="project-progress-bar progress">
+              <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <ul>
+              <li>Just some text</li>
+              <li>Just some text</li>
+            </ul>
+          </div>
+        </div>
+        <div class="list">
+          <div class="list-inner">
+            <header>Header</header>
+            <div class="project-progress-bar progress">
+              <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <ul>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis enim sit amet</li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis enim sit amet metus laoreet, ut condimentum</li>
+              <li>Lorem ipsum dolor sit amet</li>
+              <li>Lorem ipsum dolor sit amet</li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis enim sit amet</li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis enim sit amet metus laoreet, ut condimentum</li>
+              <li>Lorem ipsum dolor sit amet</li>
+              <li>Lorem ipsum dolor sit amet</li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis enim sit amet</li>
+              <li>Lorem ipsum dolor sit amet</li>
+            </ul>
+          </div>
+        </div>
+        <div class="list">
+          <div class="list-inner">
+            <header>Another List</header>
+            <div class="project-progress-bar progress">
+              <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <ul>
+              <li>Just some text</li>
+              <li>Yet another card</li>
+            </ul>
+          </div>
+        </div>
+        <div class="list">
+          <div class="list-inner">
+            <header>Header</header>
+            <div class="project-progress-bar progress">
+              <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <ul>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis enim sit amet</li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis enim sit amet metus laoreet, ut condimentum</li>
+              <li>Lorem ipsum dolor sit amet</li>
+              <li>Lorem ipsum dolor sit amet</li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis enim sit amet</li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis enim sit amet metus laoreet, ut condimentum</li>
+              <li>Lorem ipsum dolor sit amet</li>
+              <li>Lorem ipsum dolor sit amet</li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis enim sit amet</li>
+              <li>Lorem ipsum dolor sit amet</li>
+            </ul>
+          </div>
+        </div>
+        <div class="list">
+          <div class="list-inner">
+            <header>Another List</header>
+            <div class="project-progress-bar progress">
+              <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <ul>
+              <li>Just some text</li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis enim sit amet</li>
+              <li>Some more text</li>
+              <li>Some more text</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import TopMenu from '~/components/TopMenu.vue'
 import { orderBy } from 'lodash'
 import { mapState } from 'vuex';
 import io from 'socket.io-client'
@@ -40,6 +153,11 @@ const socket = io(`http://${process.env.API_URL || 'localhost'}:${process.env.AP
 export default {
   async fetch({store}) {
     await store.dispatch('projects/getProjects', {id: 2})
+  },
+  data() {
+    return {
+      filterProjects: false
+    }
   },
   head () {
     return {
@@ -52,9 +170,6 @@ export default {
         return state.projects.list
       }
     })
-  },
-  components: {
-    TopMenu
   },
   methods: {
     sendTask() {

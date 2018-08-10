@@ -1,6 +1,5 @@
 <template>
   <div class="main-top-header">
-    <h3 class="tasks-title">{{ title }}</h3>
     <div class="top-header-controls">
       <div class="header-search-holder" v-on:click="activateSearch" v-bind:class="{ active: searchIsActive }">
         <div class="search-holder">

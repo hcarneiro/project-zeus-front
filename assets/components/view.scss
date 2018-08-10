@@ -1,8 +1,4 @@
 .main-view-holder {
-  height: 100%;
+  height: calc(100% - 70px);
   display: flex;
-}
-
-.page-holder {
-  flex: 1;
 }
