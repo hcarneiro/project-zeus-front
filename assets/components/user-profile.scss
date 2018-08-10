@@ -1,0 +1,231 @@
+.user-profile-sidebar {
+  padding-top: 70px;
+
+  .user-profile-picture-holder {
+    position: relative;
+
+    .user-profile-picture {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 0 auto;
+      box-shadow: 0px 6px 40px 4px rgba(0, 0, 0, .2);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+    }
+
+    .go-back,
+    .edit-profile {
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1;
+      transition: all 0.2s ease-in-out;
+
+      &:active {
+        box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, .1);
+      }
+    }
+
+    .edit-profile {
+      width: 40px;
+      height: 40px;
+      background-color: $yellow;
+      color: $white;
+      position: absolute;
+      bottom: -10px;
+      right: 20px;
+      font-size: 1.1em;
+      box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, .2);
+    }
+
+    .go-back {
+      width: 55px;
+      height: 55px;
+      background-color: $white;
+      color: $light-grey;
+      position: absolute;
+      left: 30px;
+      top: -40px;
+      font-size: 1.6em;
+      box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, .1);
+    }
+  }
+
+  .user-profile-info {
+    padding: 40px 0 10px 80px;
+
+    .user-name {
+      font-size: 25px;
+    }
+
+    .user-title {
+      color: $light-grey;
+    }
+  }
+}
+
+.profile-view {
+  height: calc(100% - 70px);
+  display: flex;
+
+  .user-profile-dashboard {
+    width: 60%;
+    overflow: auto;
+    padding: 30px;
+  }
+
+  .user-details-holder {
+    width: 40%;
+    padding: 30px;
+
+    .profile-category {
+      color: lighten($dark-grey, 50%);
+      margin-bottom: 5px;
+    }
+
+    .profile-category-content {
+      margin-bottom: 30px;
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.profile-card {
+  background-color: $white;
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, .1);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .card-title {
+    color: $light-grey;
+  }
+
+  .card-profiles-holder {
+    display: flex;
+    justify-content: space-between;
+    
+    .card-profiles-user {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      .card-profiles-picture {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+      }
+
+      p {
+        font-size: 0.8em;
+        margin: 0;
+      }
+    }
+  }
+
+  .card-teams-holder {
+    display: flex;
+    justify-content: space-between;
+
+    .card-team {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      .card-team-picture {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        overflow: hidden;
+
+        .team-info {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          padding-top: 20px;
+          padding-bottom: 34px;
+          text-align: center;
+          color: $white;
+          text-shadow: 0px 2px 8px rgba(0, 0, 0, .8);
+          background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+          background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%);
+          background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%);
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#cc000000',GradientType=0 );
+
+          p {
+            margin: 0;
+          }
+
+          p + p {
+            font-size: 0.8em;
+          }
+        }
+      }
+
+      &.owner {
+        .team-owner {
+          display: block;
+        }
+      }
+
+      .team-owner {
+        display: none;
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        right: 0;
+        width: 80px;
+        padding: 2px 10px;
+        margin: 0 auto;
+        border-radius: 20px;
+        text-align: center;
+        background-color: $white;
+        box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, .1);
+      }
+    }
+  }
+}
+
+.label {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 40px;
+  margin-right: 10px;
+
+  &.label-primary {
+    color: $white;
+    background-color: $brand-primary;
+  }
+
+  &.label-yellow {
+    color: $white;
+    background-color: $yellow;
+  }
+
+  &.label-success {
+    color: $white;
+    background-color: $green;
+  }
+}
