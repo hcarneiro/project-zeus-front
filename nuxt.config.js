@@ -18,6 +18,7 @@ module.exports = {
     ],
     script: [
       { src: '/vendor/jquery/jquery-3.3.1.min.js' },
+      { src: '/vendor/popper/popper.min.js' },
       { src: '/vendor/bootstrap/js/bootstrap.min.js' }
     ],
     link: [
