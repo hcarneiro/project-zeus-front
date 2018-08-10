@@ -37,9 +37,6 @@
           Anim pariatur cliche reprehenderit.
         </div>
       </div>
-      <nuxt-link class="sidebar-list-item" active-class="active" tag="li" :to="'/logout'">
-        <i class="fas fa-sign-out-alt"></i> Logout
-      </nuxt-link>
     </ul>
     <div class="sidebar-bottom-holder">
       <div class="organizations-m-title">Manage organizations</div>
