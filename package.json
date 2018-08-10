@@ -34,7 +34,8 @@
     "node-sass": "^4.9.2",
     "nuxt": "^1.4.2",
     "popper.js": "^1.14.3",
-    "socket.io-client": "^2.1.1"
+    "socket.io-client": "^2.1.1",
+    "vue-click-outside": "^1.0.7"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.6",
