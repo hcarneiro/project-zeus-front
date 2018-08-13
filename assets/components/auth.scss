@@ -10,10 +10,15 @@
 
   .login-panel-wrapper {
     overflow: auto;
+    z-index: 1;
+    box-shadow: 5px 0px 60px 0px rgba(0, 0, 0, .3);
   }
 
   .decor-panel-wrapper {
     background-color: #fbfbfb;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
   }
 }
 .auth-holder {
