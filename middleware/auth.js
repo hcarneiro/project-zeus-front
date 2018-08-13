@@ -2,7 +2,9 @@ const routesToSkipAuth = [
   'logout',
   'login',
   'signup',
-  'verify-token'
+  'verify-token',
+  'reset-password-token',
+  'forgot-password'
 ];
 
 export default function (context) {

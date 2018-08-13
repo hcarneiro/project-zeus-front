@@ -81,7 +81,36 @@ a {
       box-shadow: none;
     }
   }
+
+  &.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: default;
+  }
 }
 
-
-
+.loading-spinner {
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+}
+.loading-spinner:after {
+  content: " ";
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 5px solid $brand-primary;
+  border-color: $brand-primary transparent $brand-primary transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

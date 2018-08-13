@@ -28,8 +28,12 @@
           <nuxt-link tag="a" :to="'/forgot-password'">Forgot password?</nuxt-link>
         </div>
       </div>
+      <div class="bd-callout bd-callout-danger" v-if="error" v-html="error"></div>
       <div class="auth-btn-controls">
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary"  v-bind:class="{ 'disabled': isAuthenticating }">
+          <span v-if="isAuthenticating">Please wait...</span>
+          <span v-else>Login</span>
+        </button>
         <nuxt-link class="btn btn-secondary" tag="button" :to="'/signup'">Sign up</nuxt-link>
       </div>
     </form>

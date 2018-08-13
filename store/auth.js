@@ -119,5 +119,22 @@ export const actions = {
         dispatch('onLogin', response.data.auth_token)
         return Promise.resolve()
       })
+  },
+  forgotPassword({}, email) {
+    return this.$axios.post('v1/auth/forgot', { email })
+  },
+  resetPassword({}, params) {
+    const password = params.password || ''
+    const token = params.token || ''
+
+    return this.$axios.post(`v1/auth/reset/${token}`, { password })
+  },
+  getResetTokenInfo({}, token) {
+    return this.$axios.get(`v1/auth/reset/${token}`)
+  },
+  signUp({}, data) {
+    return this.$axios.post('v1/auth/signup', data).then((response) => {
+      return Promise.resolve(response.data)
+    })
   }
 }
