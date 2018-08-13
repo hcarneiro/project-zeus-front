@@ -111,5 +111,13 @@ export const actions = {
     }
 
     return dispatch('verifyUser')
+  },
+  verifyUserEmail({dispatch}, token) {
+    return this.$axios.post(`/v1/auth/verify/${token}`)
+      .then((response) => {
+        // Token is stored to log the user in
+        dispatch('onLogin', response.data.auth_token)
+        return Promise.resolve()
+      })
   }
 }
