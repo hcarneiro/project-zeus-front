@@ -3,6 +3,9 @@ import moment from 'moment'
 
 const COOKIE_EXPIRE_DAYS = 30
 const ADMIN_ROLE_ID = 1
+const COOKIE = {
+  userToken: '_auth_token'
+}
 
 export const state = () => ({
   currentUser: {},
@@ -74,39 +77,45 @@ export const actions = {
     })
   },
   verifyUser({state, commit, dispatch}, forceCheck, setCookie) {
+    return dispatch('isLoggedIn')
+      .then((isLoggedIn) => {
+        if (!isLoggedIn && !forceCheck) {
+          return Promise.reject('You are not signed in. Please sign in.')
+        }
+
+        const params = { _: moment().unix() }
+
+        if (setCookie) {
+          params.auth_token = state.auth_token
+          params.setCookie = true
+        }
+
+        return this.$axios.get(`v1/users`, { params }).then((response) => {
+          return response
+        })
+      })
+      .then((response) => {
+        const user = response.data.user
+        const session = response.data.session
+
+        commit('setUser', user)
+        dispatch('onLogin', session && session.auth_token || user.auth_token)
+        return Promise.resolve()
+      })
+      .catch((err) => {
+        if (!forceCheck) {
+          dispatch('logout')
+        }
+        return Promise.reject(err)
+      })
+  },
+  isLoggedIn({state, commit}) {
     if (!state.authenticated) {
-      commit('setAuthToken', Cookies.get('_auth_token'))
+      commit('setAuthToken', Cookies.get(COOKIE.userToken))
       commit('setAuthenticated', !!state.auth_token)
     }
 
-    if (!state.authenticated && forceCheck) {
-      return Promise.reject('You are not signed in. Please sign in.')
-    }
-
-    const params = { _: moment().unix() }
-
-    if (setCookie) {
-      params.auth_token = state.auth_token
-      params.setCookie = true
-    }
-
-    return this.$axios.get(`v1/users`, { params }).then((response) => {
-      return response
-    })
-    .then((response) => {
-      const user = response.data.user
-      const session = response.data.session
-
-      commit('setUser', user)
-      dispatch('onLogin', session && session.auth_token || user.auth_token)
-      return Promise.resolve()
-    })
-    .catch((err) => {
-      if (!forceCheck) {
-        dispatch('logout')
-      }
-      return Promise.reject(err)
-    })
+    return state.authenticated
   },
   verify({state, dispatch}) {
     if (state.verified) {
