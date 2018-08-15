@@ -11,7 +11,7 @@ module.exports = {
       { property: 'og:title', content: '2DO' },
       { property: 'og:description', content: 'Your task management tool.' },
       { property: 'og:image', content: '' },
-      { property: 'og:url', content: 'http:www.hugocarneiro.me' },
+      { property: 'og:url', content: 'http://www.colabora.io' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { property: 'og:site_name', content: '2DO' },
       { name: 'twitter:image:alt', content: 'Your task management tool.' }
