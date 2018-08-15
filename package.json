@@ -1,7 +1,7 @@
 {
-  "name": "project-zeus-front",
+  "name": "colabora.io",
   "version": "1.0.0",
-  "description": "The project manager that is easy and useful",
+  "description": "Colabora - Project Management for Teams",
   "author": "Hugo Carneiro <hello@thegeekdeveloper.com>",
   "private": true,
   "config": {
