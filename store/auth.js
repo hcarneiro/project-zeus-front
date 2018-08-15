@@ -2,17 +2,20 @@ import Cookies from 'js-cookie'
 import moment from 'moment'
 
 const COOKIE_EXPIRE_DAYS = 30
+const ADMIN_ROLE_ID = 1
 
 export const state = () => ({
   currentUser: {},
   verified: false,
   authenticated: false,
-  auth_token: ''
+  auth_token: '',
+  ui: {}
 })
 
 export const mutations = {
   setUser(state, user) {
     state.currentUser = user
+    state.ui.isAdmin = user && user.userRoleId === ADMIN_ROLE_ID
   },
   setVerified(state, status) {
     state.verified = status
