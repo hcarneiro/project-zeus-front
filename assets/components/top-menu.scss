@@ -136,6 +136,10 @@
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 
+    &:after {
+      display: none;
+    }
+
     &:active {
       box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, .1);
     }

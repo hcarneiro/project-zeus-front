@@ -1,3 +1,10 @@
+// Variations
+@mixin task-progress-variant($color) {
+  p { color: $color; }
+
+  span { background-color: $color; }
+}
+
 $gap: 30px;
 $list-width: 350px;
 $scrollbar-thickness: 17px;
@@ -174,7 +181,7 @@ $border-radius: 10px;
       }
 
       .project-progress-bar {
-        margin-top: 20px;
+        margin-top: 10px;
         max-height: 6px;
       }
 
@@ -194,6 +201,79 @@ $border-radius: 10px;
 
           border-radius: $border-radius;
           border: 1px solid lighten($dark-grey, 70%);
+
+          .task-due {
+            opacity: 0.4;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+          }
+
+          .task-title {
+            font-size: 1em;
+            font-weight: normal;
+          }
+
+          .task-bottom-holder {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+
+            .task-assigned {
+              p {
+                opacity: 0.3;
+                font-size: 0.9em;
+                margin-bottom: 5px;
+              }
+
+              .task-profiles {
+                display: flex;
+
+                .assigned-profile-holder {
+                  width: 30px;
+                  height: 30px;
+                  border-radius: 25px;
+                  border: 2px solid #fff;
+                  background-size: cover;
+                  background-position: center center;
+                  background-repeat: no-repeat;
+
+                  & ~ .assigned-profile-holder {
+                    margin-left: -10px;
+                  }
+                }
+              }
+            }
+
+            .task-progress {
+              text-align: right;
+
+              &.info {
+                @include task-progress-variant($brand-primary);
+              }
+              &.hold {
+                @include task-progress-variant($brand-secondary);
+              }
+              &.danger {
+                @include task-progress-variant($red);
+              }
+              &.success {
+                @include task-progress-variant($green);
+              }
+
+              p {
+                font-size: 0.9em;
+                margin-bottom: 5px;
+              }
+
+              span {
+                display: inline-block;
+                font-size: 0.9em;
+                color: $white;
+                padding: 6px 12px;
+                border-radius: 20px;
+              }
+            }
+          }
         }
       }
     }

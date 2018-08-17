@@ -1,0 +1,25 @@
+// Variations
+@mixin progress-variant($color) {
+  background-color: $color;
+}
+
+.progress-info {
+  .progress-bar {
+    @include progress-variant($brand-primary); 
+  }
+}
+.progress-warning {
+  .progress-bar {
+    @include progress-variant($orange);
+  }
+}
+.progress-danger {
+  .progress-bar {
+    @include progress-variant($red);
+  }
+}
+.progress-success {
+  .progress-bar {
+    @include progress-variant($green);
+  }
+}
