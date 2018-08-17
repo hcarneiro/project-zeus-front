@@ -7,19 +7,18 @@ const routesToSkipAuth = [
   'forgot-password'
 ];
 
-export default function (context) {
-  if (routesToSkipAuth.indexOf(context.route.name) < 0) {
-    return context.store.dispatch('auth/verify').then(() => {
-      // context.next()
-      if (context.route.fullPath == '/') {
-        return context.redirect('301', '/my-tasks')
+export default function ({store, route, redirect}) {
+  if (routesToSkipAuth.indexOf(route.name) < 0) {
+    return store.dispatch('auth/verify').then(() => {
+      if (route.fullPath == '/') {
+        return redirect('301', '/my-tasks')
       } 
     }, () => {
-      return context.redirect('301', '/login')
+      return redirect('301', '/login')
     })
   }
 
-  if (context.route.fullPath == '/') {
-    return context.redirect('301', '/my-tasks')
+  if (route.fullPath == '/') {
+    return redirect('301', '/my-tasks')
   }  
 }

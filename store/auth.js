@@ -79,6 +79,7 @@ export const actions = {
   verifyUser({state, commit, dispatch}, forceCheck, setCookie) {
     return dispatch('isLoggedIn')
       .then((isLoggedIn) => {
+        debugger
         if (!isLoggedIn && !forceCheck) {
           return Promise.reject('You are not signed in. Please sign in.')
         }
@@ -122,7 +123,7 @@ export const actions = {
       return Promise.resolve()
     }
 
-    return dispatch('verifyUser')
+    return dispatch('verifyUser', true)
   },
   verifyUserEmail({dispatch}, token) {
     return this.$axios.post(`/v1/auth/verify/${token}`)
