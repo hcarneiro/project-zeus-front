@@ -79,7 +79,6 @@ export const actions = {
   verifyUser({state, commit, dispatch}, forceCheck, setCookie) {
     return dispatch('isLoggedIn')
       .then((isLoggedIn) => {
-        debugger
         if (!isLoggedIn && !forceCheck) {
           return Promise.reject('You are not signed in. Please sign in.')
         }
