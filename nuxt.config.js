@@ -45,7 +45,8 @@ module.exports = {
     credentials: true
   },
   plugins: [
-    '~/plugins/filters'
+    '~/plugins/filters',
+    { src: '~/plugins/slideout-panel', ssr: false }
   ],
   /*
   ** Build configuration

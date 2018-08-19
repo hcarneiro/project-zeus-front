@@ -12,9 +12,12 @@
         <div class="notification-alert"></div>
         <i class="far fa-bell"></i>
       </div>
-      <div class="profile-holder dropdown-toggle" data-toggle="dropdown" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
+      <div class="profile-holder dropdown-toggle" data-toggle="dropdown">
+        <div class="profile-picture" v-if="userPictureBackground" :style="userPictureBackground"></div>
+        <i class="far fa-user"></i>
+      </div>
       <div class="profile-dropdown dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-        <div class="dropdown-header">Hugo Carneiro</div>
+        <div class="dropdown-header">{{ userFullName }}</div>
         <div class="dropdown-divider"></div>
         <nuxt-link class="dropdown-item" tag="a" :to="'/profile'">My profile</nuxt-link>
         <nuxt-link class="dropdown-item" tag="a" :to="'/logout'">Log out</nuxt-link>
@@ -25,6 +28,7 @@
 
 <script>
 import ClickOutside from 'vue-click-outside'
+import { mapState } from 'vuex';
 
 export default {
   data() {
@@ -39,6 +43,18 @@ export default {
   },
   directives: {
     ClickOutside
+  },
+  computed: {
+    ...mapState({
+      userPictureBackground: state => {
+        if (state.auth.currentUser.profilePicture) {
+          return `background-image: url('${state.auth.currentUser.profilePicture}')`
+        }
+      },
+      userFullName: state => {
+        return state.auth.currentUser.fullName
+      }
+    })
   },
   watch: {
     searchInput(value) {

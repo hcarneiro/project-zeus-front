@@ -4,15 +4,30 @@
   .user-profile-picture-holder {
     position: relative;
 
-    .user-profile-picture {
+    .user-picture-holder {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 150px;
       height: 150px;
+      font-size: 3em;
       border-radius: 50%;
       margin: 0 auto;
       box-shadow: 0px 6px 40px 4px rgba(0, 0, 0, .2);
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center center;
+      background-color: $white;
+      overflow: hidden;
+
+      .user-profile-picture {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 150px;
+        height: 150px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+      }
     }
 
     .go-back,
@@ -116,20 +131,46 @@
   .card-profiles-holder {
     display: flex;
     justify-content: space-between;
+    overflow-x: auto;
+    margin: 0 -20px;
     
     .card-profiles-user {
       display: flex;
       align-items: center;
       flex-direction: column;
+      text-align: center;
+      padding: 0 10px;
 
-      .card-profiles-picture {
+      &:first-child {
+        padding-left: 20px;
+      }
+
+      &:last-child {
+        padding-right: 20px;
+      }
+
+      .card-profiles-picture-holder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
         width: 60px;
         height: 60px;
         border-radius: 50%;
         margin-bottom: 10px;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center center;
+        overflow: hidden;
+        background-color: lighten($black, 90%);
+
+        .card-profiles-picture {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 60px;
+          height: 60px;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center center;
+        }
       }
 
       p {
@@ -142,45 +183,82 @@
   .card-teams-holder {
     display: flex;
     justify-content: space-between;
+    overflow-x: auto;
+    margin: 0 -20px;
 
     .card-team {
       position: relative;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
+      padding: 0 10px;
 
-      .card-team-picture {
+      &:first-child {
+        padding-left: 20px;
+
+        .team-info {
+          left: 20px;
+        }
+      }
+
+      &:last-child {
+        padding-right: 20px;
+
+        .team-info {
+          right: 20px;
+        }
+      }
+
+      .card-team-picture-holder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: relative;
         width: 150px;
         height: 150px;
         border-radius: 50%;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center center;
         overflow: hidden;
 
-        .team-info {
+        .card-team-picture {
           position: absolute;
+          top: 0;
           left: 0;
           right: 0;
           bottom: 0;
-          padding-top: 20px;
-          padding-bottom: 34px;
-          text-align: center;
-          color: $white;
-          text-shadow: 0px 2px 8px rgba(0, 0, 0, .8);
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center center;
+        }
+
+        &:after {
+          content: '';
+          display: block;
+          position: absolute;
+          bottom: 0;
+          top: 0;
+          left: 0;
+          right: 0;
           background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
           background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%);
           background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%);
           filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#cc000000',GradientType=0 );
+        }
+      }
 
-          p {
-            margin: 0;
-          }
+      .team-info {
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        bottom: 0;
+        padding-top: 20px;
+        padding-bottom: 34px;
+        text-align: center;
+        color: $white;
+        text-shadow: 0px 2px 8px rgba(0, 0, 0, .8);
 
-          p + p {
-            font-size: 0.8em;
-          }
+        p {
+          margin: 0;
+        }
+
+        p + p {
+          font-size: 0.8em;
         }
       }
 
@@ -193,7 +271,7 @@
       .team-owner {
         display: none;
         position: absolute;
-        bottom: -5px;
+        top: 20px;
         left: 0;
         right: 0;
         width: 80px;
@@ -228,4 +306,8 @@
     color: $white;
     background-color: $green;
   }
+}
+
+.update-profile-overlay {
+  width: 50% !important;
 }

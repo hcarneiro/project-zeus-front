@@ -125,15 +125,18 @@
   }
 
   .profile-holder {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 40px;
     height: 40px;
     border-radius: 40px;
     margin-left: 30px;
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, .3);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
+    background-color: $white;
     cursor: pointer;
+    overflow: hidden;
     transition: all 0.2s ease-in-out;
 
     &:after {
@@ -142,6 +145,17 @@
 
     &:active {
       box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, .1);
+    }
+
+    .profile-picture {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40px;
+      height: 40px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
     }
   }
 
