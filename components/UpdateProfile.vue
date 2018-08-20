@@ -1,49 +1,54 @@
 <template>
-  <div>
+  <div class="slide-overlay-wrapper">
     <slide-panel-header @closeProfilePanel="onClose"></slide-panel-header>
-    <form @submit.prevent="saveSettings">
-      <div class="form-group">
-        <label for="first_name">First name</label>
-        <input type="text" class="form-control" id="first_name" placeholder="Enter first name" v-model="firstName">
-      </div>
-      <div class="form-group">
-        <label for="last_name">Last name</label>
-        <input type="text" class="form-control" id="last_name" placeholder="Enter last name" v-model="lastName">
-      </div>
-      <div class="form-group">
-        <label for="email">Email address</label>
-        <input type="email" class="form-control" id="email" placeholder="Enter email" v-model="email">
-      </div>
-      <div class="form-group">
-        <label for="job_title">Job title</label>
-        <input type="text" class="form-control" id="job_title" placeholder="Enter email" v-model="userTitle">
-      </div>
-      <div class="form-group">
-        <label for="bio">Bio</label>
-        <input type="email" class="form-control" id="bio" placeholder="Enter email" v-model="userBio">
-      </div>
-      <div class="form-group">
-        <label for="city">City</label>
-        <input type="email" class="form-control" id="city" placeholder="Enter email" v-model="userCity">
-      </div>
-      <div class="form-group">
-        <label for="country">Country</label>
-        <input type="email" class="form-control" id="country" placeholder="Enter email" v-model="userCountry">
-      </div>
-      <div class="form-group">
-        <label for="current_password">Current password</label>
-        <input type="password" class="form-control" id="current_password" placeholder="Enter email" v-model="currentPassword">
-      </div>
-      <div class="form-group">
-        <label for="new_password">New password</label>
-        <input type="password" class="form-control" id="new_password" placeholder="Enter email" v-model="newPassword">
-      </div>
-      <div class="form-group">
-        <label for="confirm_password">Confirm new password</label>
-        <input type="password" class="form-control" id="confirm_password" placeholder="Enter email" v-model="confirmPassword">
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    <div class="slide-overlay-body">
+      <form @submit.prevent="saveSettings">
+        <div class="form-group">
+          <label for="first_name">First name</label>
+          <input type="text" class="form-control" id="first_name" placeholder="Enter first name" v-model="firstName">
+        </div>
+        <div class="form-group">
+          <label for="last_name">Last name</label>
+          <input type="text" class="form-control" id="last_name" placeholder="Enter last name" v-model="lastName">
+        </div>
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" class="form-control" id="email" placeholder="Enter email" v-model="email">
+        </div>
+        <div class="form-group">
+          <label for="job_title">Job title</label>
+          <input type="text" class="form-control" id="job_title" placeholder="Enter email" v-model="userTitle">
+        </div>
+        <div class="form-group">
+          <label for="bio">Bio</label>
+          <input type="text" class="form-control" id="bio" placeholder="Enter email" v-model="userBio">
+        </div>
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" class="form-control" id="city" placeholder="Enter email" v-model="userCity">
+        </div>
+        <div class="form-group">
+          <label for="country">Country</label>
+          <input type="text" class="form-control" id="country" placeholder="Enter email" v-model="userCountry">
+        </div>
+        <div class="form-group">
+          <label for="current_password">Current password</label>
+          <input type="password" class="form-control" id="current_password" placeholder="Enter email" v-model="currentPassword">
+        </div>
+        <div class="form-group">
+          <label for="new_password">New password</label>
+          <input type="password" class="form-control" id="new_password" placeholder="Enter email" v-model="newPassword">
+        </div>
+        <div class="form-group">
+          <label for="confirm_password">Confirm new password</label>
+          <input type="password" class="form-control" id="confirm_password" placeholder="Enter email" v-model="confirmPassword">
+        </div>
+        <button type="submit" class="btn btn-primary" v-bind:class="{ 'disabled': isSubmitting }">
+          <template v-if="!isSubmitting">Update</template>
+          <template v-else>Updating...</template>
+        </button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -71,6 +76,8 @@ export default {
       currentPassword: undefined,
       newPassword: undefined,
       confirmPassword: undefined,
+      isSubmitting: false,
+      error: undefined
     }
   },
   components: {
@@ -92,7 +99,18 @@ export default {
         newPassword: this.newPassword
       }
 
-      this.onClose(userData)
+      this.error = ''
+      this.isSubmitting = true
+
+      this.$store.dispatch('users/userUpdate', userData)
+        .then(() => {
+          this.isSubmitting = false
+          this.onClose(userData)
+        })
+        .catch((error) => {
+          this.isSubmitting = false
+          this.error = error
+        })
     },
     onClose(options) {
       this.$emit('closePanel', options);
