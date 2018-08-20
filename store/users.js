@@ -1,27 +1,13 @@
-export const state = () => ({
-  users: [],
-  currentUser: {},
-})
+export const state = () => ({})
 
-export const mutations = {
-  setUsers(state, users) {
-    state.users = users
-  }
-}
+export const mutations = {}
 
 export const actions = {
-  async getUsers({commit}) {
-    await this.$axios.get(`/v1/users`)
+  async userUpdate({commit, rootState}, data) {
+    await this.$axios.put(`/v1/users`, data)
       .then((res) => {
         if (res.status === 200) {
-          commit('setUsers', res.data)
-        }
-      })
-  },
-  async getUserById({commit}, params) {
-    await this.$axios.get(`/v1/users/${params.id}`)
-      .then((res) => {
-        if (res.status === 200) {
+          commit('auth/setUser', res.data.user, { root: true })
           return res.data
         }
       })
