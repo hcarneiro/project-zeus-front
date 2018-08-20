@@ -302,6 +302,16 @@
     background-color: $yellow;
   }
 
+  &.label-warning {
+    color: $white;
+    background-color: $orange;
+  }
+
+  &.label-danger {
+    color: $white;
+    background-color: $red;
+  }
+
   &.label-success {
     color: $white;
     background-color: $green;
@@ -310,4 +320,48 @@
 
 .update-profile-overlay {
   width: 50% !important;
+}
+
+.update-profile-overlay {
+  .slide-overlay-wrapper {
+    position: relative;
+    height: 100%;
+
+    .slide-overlay-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 30px;
+      background-color: $white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .slider-overlay-close {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5em;
+        opacity: 0.5;
+        background-color: $white;
+        border-radius: 50%;
+        box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, .2);
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+
+        &:active {
+          box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, .1);
+        }
+      }
+    }
+
+    .slide-overlay-body {
+      height: 100%;
+      padding: 101px 30px 80px;
+      overflow: auto;
+    }
+  }
 }

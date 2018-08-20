@@ -23,15 +23,9 @@
 </template>
 
 <script>
+import { vueSlideoutPanelService } from 'vue2-slideout-panel'
 import UpdateProfile from '~/components/UpdateProfile.vue'
 import { mapState } from 'vuex';
-
-// Because of SSR
-let SlideoutPanelService;
-if (process.browser) {
-  const { vueSlideoutPanelService } = require('vue2-slideout-panel');
-  SlideoutPanelService = vueSlideoutPanelService
-}
 
 export default {
   data() {
@@ -62,16 +56,13 @@ export default {
   },
   methods: {
     showPanel() {
-      SlideoutPanelService.show({
+      vueSlideoutPanelService.show({
           component: UpdateProfile,
           cssClass: 'update-profile-overlay',
           props: {
             user: this.$store.state.auth.currentUser
           }
         })
-        .then(results => {
-          console.log(results);
-        });
     }
   }
 }

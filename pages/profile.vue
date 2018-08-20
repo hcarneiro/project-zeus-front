@@ -107,7 +107,7 @@
           </template>
           <div class="profile-category">Key Responsabilities</div>
           <div class="profile-category-content">
-            <span class="label label-success">Design</span><span class="label label-primary">Development</span><span class="label label-yellow">Marketing</span>
+            <span v-for="(responsability, index) in userResponsabilities" class="label" v-bind:class="getRandomColor()" v-bind:key="index">{{ responsability }}</span>
           </div>
         </div>
       </div>
@@ -119,6 +119,14 @@
 import UserSideBar from '~/components/UserSideBar.vue'
 import TopMenu from '~/components/TopMenu.vue'
 import { mapState } from 'vuex';
+
+const labelColors = [
+  'label-success',
+  'label-warning',
+  'label-primary',
+  'label-yellow',
+  'label-danger'
+]
 
 export default {
   layout: 'profile',
@@ -160,8 +168,18 @@ export default {
         if (city && country) {
           return `${city}, ${country}`
         }
+      },
+      userResponsabilities: state => {
+        if (state.auth.currentUser.userResponsabilities) {
+          return state.auth.currentUser.userResponsabilities
+        }
       }
     })
+  },
+  methods: {
+    getRandomColor() {
+      return labelColors[Math.floor(Math.random() * labelColors.length)]
+    }
   }
 }
 </script>
