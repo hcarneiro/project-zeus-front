@@ -47,7 +47,8 @@ module.exports = {
   },
   plugins: [
     '~/plugins/filters',
-    { src: '~/plugins/slideout-panel', ssr: false }
+    '~/plugins/slideout-panel',
+    '~/plugins/vue-nav-tabs'
   ],
   /*
   ** Build configuration
