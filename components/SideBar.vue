@@ -40,20 +40,23 @@
     </ul>
     <div class="sidebar-bottom-holder">
       <div class="organizations-m-title">Manage organizations</div>
-      <li class="sidebar-list-item collapsed" data-toggle="collapse" data-target="#collapseOrganizations" v-bind:class="{ 'is-open': organizationsIsActive }" v-on:click="organizationsIsActive = !organizationsIsActive">
-        Organization name <i class="sidebar-chevron fas fa-chevron-down"></i>
+      <li v-if="organizations.length < 2" class="sidebar-list-item">{{ organizations[0].name }}</li>
+      <li v-else class="sidebar-list-item collapsed" data-toggle="collapse" data-target="#collapseOrganizations" v-bind:class="{ 'is-open': organizationsIsActive }" v-on:click="organizationsIsActive = !organizationsIsActive">
+        {{ organizations[0].name }} <i class="sidebar-chevron fas fa-chevron-down"></i>
       </li>
       <div class="sidebar-collapse collapse" id="collapseOrganizations">
         <div class="collapse-body">
-          Anim pariatur cliche reprehenderit.
+          <li v-for="(organization, index) in organizations" v-if="index > 0" v-bind:key="organization.id">{{ organization.name }}</li>
         </div>
       </div>
-      <div class="copyright">Project Zeus &copy; {{ new Date().getFullYear() }}</div>
+      <div class="copyright">Colabora &copy; {{ new Date().getFullYear() }}</div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   data() {
     return {
@@ -65,8 +68,12 @@ export default {
       organizationsIsActive: false
     }
   },
-  methods: {
-
+  computed: {
+    ...mapState({
+      organizations: state => {
+        return state.organizations.userOrganizations
+      }
+    })
   }
 }
 </script>
