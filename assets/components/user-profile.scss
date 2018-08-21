@@ -22,11 +22,12 @@
         position: absolute;
         top: 0;
         left: 0;
-        width: 150px;
-        height: 150px;
+        right: 0;
+        bottom: 0;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center center;
+        background-color: $white;
       }
     }
 
@@ -332,6 +333,7 @@
       top: 0;
       left: 0;
       right: 0;
+      z-index: 1;
       padding: 30px;
       background-color: $white;
       display: flex;
@@ -360,8 +362,195 @@
 
     .slide-overlay-body {
       height: 100%;
-      padding: 101px 30px 80px;
-      overflow: auto;
+      padding: 101px 0 0;
     }
+  }
+}
+
+.vue-tabs {
+  height: 100%;
+
+  .nav-tabs-wrapper {
+    .nav-tabs {
+      border-bottom: 1px solid lighten($black, 90%);
+      padding: 0 15px;
+
+      & > li {
+        padding: 0 15px;
+        margin-bottom: 5px;
+
+        &.active {
+          & > a {
+            color: $light-grey;
+            border-bottom: 4px solid $brand-primary;
+
+            &:hover {
+              border-bottom: 4px solid $brand-primary;
+            }
+          }
+        }
+
+        & > a {
+          text-decoration: none;
+          color: $light-grey;
+          padding: 5px 0;
+          border-bottom: 4px solid transparent;
+
+          &:hover {
+            border-bottom: 4px solid transparent;
+          }
+        }
+      }
+    }
+  }
+
+  .tab-content {
+    height: calc(100% - 37px);
+    padding: 30px 30px;
+    overflow: auto;
+  }
+}
+
+.profile-form {
+  .update-profile-picture {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+
+    .profile-picture-controls {
+      display: flex;
+      align-items: center;
+      margin-left: 30px;
+
+      .add-picture {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+        margin: 0;
+
+        .picture-action-label {
+          display: inline-block;
+          font-size: 0.8em;
+          color: $light-grey;
+          vertical-align: middle;
+
+          &:hover {
+            color: $brand-primary;
+          }
+
+          &.uploading {
+            cursor: default;
+
+            &:hover {
+              color: $light-grey;
+            }
+          }
+        }
+
+        .add-picture-separator {
+          display: inline-block;
+          color: $light-grey;
+          cursor: default;
+          padding-left: 5px;
+          padding-right: 5px;
+          vertical-align: middle;
+        }
+      }
+    }
+
+    .photo-upload-form {
+      display: none;
+    }
+
+    .user-picture-holder {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 100px;
+      font-size: 3em;
+      border-radius: 50%;
+      border: 1px solid #ccc;
+      background-color: $white;
+      overflow: hidden;
+
+      .user-profile-picture {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        background-color: $white;
+      }
+    }
+  }
+
+  .profile-form-field {
+    position: relative;
+    margin: 0 0 30px 0;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    label {
+      margin: 0;
+      padding-right: 40px;
+      color: $light-grey;
+    }
+
+    input,
+    textarea {
+      border-radius: 0;
+      border: none;
+      border-bottom: 1px solid lighten($black, 90%);
+      padding: 10px 40px 8px 0;
+      height: auto;
+      box-shadow: none;
+      font-size: 1.2em;
+
+      resize: none;
+
+      &:focus,
+      &:active:focus {
+        box-shadow: none;
+        border-bottom: 1px solid $brand-primary;
+      }
+
+      &.valid {
+        & ~ i {
+          color: $green;
+        }
+      }
+
+      &.has-error {
+        & ~ i {
+          color: $red;
+        }
+      }
+    }
+
+    i {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      color: lighten($black, 80%);
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: -20px;
+      transition: color 0.15s ease-in-out;
+    }
+  }
+
+  .btn {
+    min-width: 150px;
   }
 }
