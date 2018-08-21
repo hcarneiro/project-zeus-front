@@ -20,6 +20,9 @@ export const mutations = {
     state.currentUser = user
     state.ui.isAdmin = user && user.userRoleId === ADMIN_ROLE_ID
   },
+  setUserPhoto(state, photoUrl) {
+    state.currentUser.profilePicture = photoUrl
+  },
   setVerified(state, status) {
     state.verified = status
   },
@@ -55,7 +58,7 @@ export const actions = {
         return Promise.resolve()
       })
   },
-  onLogin({commit}, authToken, options) {
+  onLogin({commit, dispatch, rootState}, authToken, options) {
     if (!authToken) {
       throw new Error('Cannot login with no authToken')
     }
@@ -75,6 +78,8 @@ export const actions = {
     Cookies.set('_auth_token', authToken, {
       expires: Cookies.get('_remember') ? COOKIE_EXPIRE_DAYS : undefined
     })
+
+    dispatch('organizations/get', null, { root: true })
   },
   verifyUser({state, commit, dispatch}, forceCheck, setCookie) {
     return dispatch('isLoggedIn')
