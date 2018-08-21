@@ -40,7 +40,7 @@
     </ul>
     <div class="sidebar-bottom-holder">
       <div class="organizations-m-title">Manage organizations</div>
-      <li v-if="organizations.length < 2" class="sidebar-list-item">{{ organizations[0].name }}</li>
+      <li v-if="organizations.length < 2" class="sidebar-list-item">{{ organizationName }}</li>
       <li v-else class="sidebar-list-item collapsed" data-toggle="collapse" data-target="#collapseOrganizations" v-bind:class="{ 'is-open': organizationsIsActive }" v-on:click="organizationsIsActive = !organizationsIsActive">
         {{ organizations[0].name }} <i class="sidebar-chevron fas fa-chevron-down"></i>
       </li>
@@ -73,7 +73,12 @@ export default {
       organizations: state => {
         return state.organizations.userOrganizations
       }
-    })
+    }),
+    organizationName() {
+      if (this.organizations.length) {
+        return this.organizations[0].name
+      }
+    }
   }
 }
 </script>
