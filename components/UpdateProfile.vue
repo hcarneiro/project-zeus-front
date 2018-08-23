@@ -44,10 +44,6 @@
               </div>
             </div>
             <div class="form-group profile-form-field">
-              <label for="email">Email address</label>
-              <input type="email" class="form-control" id="email" v-model="email">
-            </div>
-            <div class="form-group profile-form-field">
               <label for="job_title">Role</label>
               <input type="text" class="form-control" id="job_title" v-model="userTitle">
             </div>
@@ -75,6 +71,10 @@
 
         <v-tab title="Account">
           <form @submit.prevent="savePassword" class="profile-form">
+            <div class="form-group profile-form-field">
+              <label for="email">Email address</label>
+              <input type="email" class="form-control" id="email" v-model="email" disabled>
+            </div>
             <div class="form-group profile-form-field">
               <label for="current_password">Current password</label>
               <input type="password" class="form-control" id="current_password" v-model="currentPassword">

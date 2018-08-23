@@ -1,31 +1,37 @@
 <template>
-  <div class="auth-holder reset-password">
-    <h1>Reset password</h1>
-    <p class="text-muted">Please enter your new password below for your account.</p>
-    <div class="loading-spinner" v-if="loading"></div>
-    <form @submit.prevent="resetPassword">
-      <div class="auth-form" v-if="validToken">
-        <div class="form-group auth-form-field">
-          <label for="reset-password">New password</label>
-          <input type="password" class="form-control" id="reset-password" v-model="password" required>
+  <div class="login-panel-wrapper">
+    <div class="auth-logo-holder">
+      <div class="auth-logo"></div>
+      <div class="logo-typography">Colabora<span>.io</span></div>
+    </div>
+    <div class="auth-holder reset-password">
+      <h1>Reset password</h1>
+      <p class="text-muted">Please enter your new password below for your account.</p>
+      <div class="loading-spinner" v-if="loading"></div>
+      <form @submit.prevent="resetPassword">
+        <div class="auth-form" v-if="validToken">
+          <div class="form-group auth-form-field">
+            <label for="reset-password">New password</label>
+            <input type="password" class="form-control" id="reset-password" v-model="password" required>
+          </div>
+          <div class="form-group auth-form-field">
+            <label for="reset-confirm-password">Confirm new password</label>
+            <input type="password" class="form-control" id="reset-confirm-password" v-model="passwordConfirm" required>
+          </div>
         </div>
-        <div class="form-group auth-form-field">
-          <label for="reset-confirm-password">Confirm new password</label>
-          <input type="password" class="form-control" id="reset-confirm-password" v-model="passwordConfirm" required>
+        <div class="bd-callout bd-callout-danger" v-if="error" v-html="error"></div>
+        <div class="bd-callout bd-callout-success" v-if="success">
+          <h4>Password successfully reset</h4>
+          <nuxt-link tag="a" :to="'/login'">Click here to login</nuxt-link>
         </div>
-      </div>
-      <div class="bd-callout bd-callout-danger" v-if="error" v-html="error"></div>
-      <div class="bd-callout bd-callout-success" v-if="success">
-        <h4>Password successfully reset</h4>
-        <nuxt-link tag="a" :to="'/login'">Click here to login</nuxt-link>
-      </div>
-      <div class="auth-btn-controls" v-if="validToken && !success && !error">
-        <button type="submit" class="btn btn-primary" v-bind:class="{ 'disabled': isResetting }">
-          <span v-if="isResetting">Please wait...</span>
-          <span v-else>Reset password</span>
-        </button>
-      </div>
-    </form>
+        <div class="auth-btn-controls" v-if="validToken && !success && !error">
+          <button type="submit" class="btn btn-primary" v-bind:class="{ 'disabled': isResetting }">
+            <span v-if="isResetting">Please wait...</span>
+            <span v-else>Reset password</span>
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 <script>

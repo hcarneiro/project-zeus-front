@@ -533,6 +533,11 @@
           color: $red;
         }
       }
+
+      &[disabled] {
+        background-color: transparent;
+        color: lighten($black, 80%);
+      }
     }
 
     i {

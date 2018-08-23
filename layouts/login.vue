@@ -1,8 +1,6 @@
 <template>
   <div class="login-page-wrapper">
-    <div class="login-panel-wrapper">
-      <nuxt/>
-    </div>
+    <nuxt/>
     <div class="decor-panel-wrapper" :style="backgroundImage">
     </div>
   </div>

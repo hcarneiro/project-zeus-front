@@ -9,6 +9,7 @@
   }
 
   .login-panel-wrapper {
+    position: relative;
     overflow: auto;
     z-index: 1;
     box-shadow: 5px 0px 60px 0px rgba(0, 0, 0, .3);
@@ -21,15 +22,43 @@
     background-repeat: no-repeat;
   }
 }
+
+.auth-logo-holder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right:0;
+  z-index: 1;
+  padding: 15px 30px;
+  background-color: $white;
+  display: flex;
+  align-items: flex-end;
+
+  .auth-logo {
+    width: 60px;
+    height: 60px;
+    background-color: $white;
+    border-radius: 40px;
+    background-image: url('/images/colabora-logo-small.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  .logo-typography {
+    font-size: 1.5em;
+    margin-left: 15px;
+
+    span {
+      color: $light-grey;
+    }
+  }
+}
+
 .auth-holder {
   width: 100%;
-  max-width: 65%;
-  margin: 0 auto;
-  padding: 15% 0 5%;
-
-  &.signup {
-    padding: 10% 0 5%;
-  }
+  height: 100%;
+  overflow: auto;
+  padding: 120px 15% 50px;
 
   .auth-form {
     background-color: $white;

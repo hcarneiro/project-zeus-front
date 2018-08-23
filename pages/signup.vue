@@ -1,5 +1,9 @@
 <template>
-  <div>
+  <div class="login-panel-wrapper">
+    <div class="auth-logo-holder">
+      <div class="auth-logo"></div>
+      <div class="logo-typography">Colabora<span>.io</span></div>
+    </div>
     <div class="auth-holder signup" v-if="!signedUp">
       <h1>Sign up</h1>
       <p class="text-muted">Start your <strong>Free</strong> account</p>
