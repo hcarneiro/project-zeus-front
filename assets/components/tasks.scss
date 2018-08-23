@@ -191,6 +191,23 @@ $border-radius: 10px;
         padding: 30px 0 20px;
         overflow-y: auto;
 
+        .task-drag-area {
+          min-height: 10px;
+
+          span {
+            display: block;
+            min-height: 10px;
+          }
+        }
+
+        .task-item {
+          transition: all 0.2s;
+        }
+
+        .taks-enter, .task-leave-active {
+          opacity: 0;
+        }
+
         li {
           background-color: #fff;
           padding: 10px;

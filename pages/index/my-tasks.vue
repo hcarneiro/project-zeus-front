@@ -23,308 +23,38 @@
     </div>
     <div class="tasks-container">
       <div class="lists">
-        <div class="list">
+
+        <div class="list" v-for="project in projects" :key="project.id">
           <div class="list-inner">
-            <header>Project name</header>
+            <header>{{ project.name }}</header>
             <div class="project-progress-bar progress progress-info">
-              <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar" role="progressbar" :style="`width: ${project.progress}%`" :aria-valuenow="`${project.progress}`" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             <ul>
-              <li>
-                <p class="task-due">3 days remaining</p>
-                <h3 class="task-title">Lorem ipsum dolor</h3>
-                <div class="task-bottom-holder">
-                  <div class="task-assigned">
-                    <p>Assigned to</p>
-                    <div class="task-profiles">
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
+              <draggable v-model="project.tasks" class="task-drag-area" :options="{ group: { name: 'app-dependencies', pull: true, put: true } }"  @end="onEnd">
+                <transition-group name="task">
+                  <li v-for="task in project.tasks" :key="task.id" class="task-item">
+                    <p class="task-due">{{ task.dueAt | remainingTime }} remaining</p>
+                    <h3 class="task-title">{{ task.title }}</h3>
+                    <div class="task-bottom-holder">
+                      <div class="task-assigned">
+                        <p>Assigned to</p>
+                        <div class="task-profiles">
+                          <div v-for="user in task.assignedTo" :key="user.id" class="assigned-profile-holder" :style="`background-image: url('${user.profilePicture}')`"></div>
+                        </div>
+                      </div>
+                      <div class="task-progress" :class="{ 'info': task.status === 'in progress', 'hold': task.status === 'on hold', 'danger': task.status === 'overdue', 'success': task.status === 'completed' }">
+                        <p>In progress</p>
+                        <span>{{ task.progress }}%</span>
+                      </div>
                     </div>
-                  </div>
-                  <div class="task-progress info">
-                    <p>In progress</p>
-                    <span>25%</span>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <p class="task-due">3 days remaining</p>
-                <h3 class="task-title">Lorem ipsum dolor</h3>
-                <div class="task-bottom-holder">
-                  <div class="task-assigned">
-                    <p>Assigned to</p>
-                    <div class="task-profiles">
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                    </div>
-                  </div>
-                  <div class="task-progress hold">
-                    <p>In progress</p>
-                    <span>25%</span>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <p class="task-due">3 days remaining</p>
-                <h3 class="task-title">Lorem ipsum dolor</h3>
-                <div class="task-bottom-holder">
-                  <div class="task-assigned">
-                    <p>Assigned to</p>
-                    <div class="task-profiles">
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                    </div>
-                  </div>
-                  <div class="task-progress danger">
-                    <p>In progress</p>
-                    <span>25%</span>
-                  </div>
-                </div>
-              </li>
+                  </li>
+                </transition-group>
+              </draggable>
             </ul>
           </div>
         </div>
-        <div class="list">
-          <div class="list-inner">
-            <header>Header</header>
-            <div class="project-progress-bar progress progress-info">
-              <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <ul>
-              <li>
-                <p class="task-due">3 days remaining</p>
-                <h3 class="task-title">Lorem ipsum dolor</h3>
-                <div class="task-bottom-holder">
-                  <div class="task-assigned">
-                    <p>Assigned to</p>
-                    <div class="task-profiles">
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                    </div>
-                  </div>
-                  <div class="task-progress info">
-                    <p>In progress</p>
-                    <span>25%</span>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <p class="task-due">3 days remaining</p>
-                <h3 class="task-title">Lorem ipsum dolor</h3>
-                <div class="task-bottom-holder">
-                  <div class="task-assigned">
-                    <p>Assigned to</p>
-                    <div class="task-profiles">
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                    </div>
-                  </div>
-                  <div class="task-progress success">
-                    <p>In progress</p>
-                    <span>25%</span>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <p class="task-due">3 days remaining</p>
-                <h3 class="task-title">Lorem ipsum dolor</h3>
-                <div class="task-bottom-holder">
-                  <div class="task-assigned">
-                    <p>Assigned to</p>
-                    <div class="task-profiles">
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                    </div>
-                  </div>
-                  <div class="task-progress hold">
-                    <p>In progress</p>
-                    <span>25%</span>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <p class="task-due">3 days remaining</p>
-                <h3 class="task-title">Lorem ipsum dolor</h3>
-                <div class="task-bottom-holder">
-                  <div class="task-assigned">
-                    <p>Assigned to</p>
-                    <div class="task-profiles">
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                    </div>
-                  </div>
-                  <div class="task-progress info">
-                    <p>In progress</p>
-                    <span>25%</span>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <p class="task-due">3 days remaining</p>
-                <h3 class="task-title">Lorem ipsum dolor</h3>
-                <div class="task-bottom-holder">
-                  <div class="task-assigned">
-                    <p>Assigned to</p>
-                    <div class="task-profiles">
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                    </div>
-                  </div>
-                  <div class="task-progress info">
-                    <p>In progress</p>
-                    <span>25%</span>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="list">
-          <div class="list-inner">
-            <header>Another List</header>
-            <div class="project-progress-bar progress progress-info">
-              <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <ul>
-              <li>
-                <p class="task-due">3 days remaining</p>
-                <h3 class="task-title">Lorem ipsum dolor</h3>
-                <div class="task-bottom-holder">
-                  <div class="task-assigned">
-                    <p>Assigned to</p>
-                    <div class="task-profiles">
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                    </div>
-                  </div>
-                  <div class="task-progress info">
-                    <p>In progress</p>
-                    <span>25%</span>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="list">
-          <div class="list-inner">
-            <header>Header</header>
-            <div class="project-progress-bar progress progress-info">
-              <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <ul>
-              <li>
-                <p class="task-due">3 days remaining</p>
-                <h3 class="task-title">Lorem ipsum dolor</h3>
-                <div class="task-bottom-holder">
-                  <div class="task-assigned">
-                    <p>Assigned to</p>
-                    <div class="task-profiles">
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                    </div>
-                  </div>
-                  <div class="task-progress info">
-                    <p>In progress</p>
-                    <span>25%</span>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <p class="task-due">3 days remaining</p>
-                <h3 class="task-title">Lorem ipsum dolor</h3>
-                <div class="task-bottom-holder">
-                  <div class="task-assigned">
-                    <p>Assigned to</p>
-                    <div class="task-profiles">
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                    </div>
-                  </div>
-                  <div class="task-progress danger">
-                    <p>In progress</p>
-                    <span>25%</span>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="list">
-          <div class="list-inner">
-            <header>Another List</header>
-            <div class="project-progress-bar progress progress-info">
-              <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <ul>
-              <li>
-                <p class="task-due">3 days remaining</p>
-                <h3 class="task-title">Lorem ipsum dolor</h3>
-                <div class="task-bottom-holder">
-                  <div class="task-assigned">
-                    <p>Assigned to</p>
-                    <div class="task-profiles">
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                    </div>
-                  </div>
-                  <div class="task-progress info">
-                    <p>In progress</p>
-                    <span>25%</span>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <p class="task-due">3 days remaining</p>
-                <h3 class="task-title">Lorem ipsum dolor</h3>
-                <div class="task-bottom-holder">
-                  <div class="task-assigned">
-                    <p>Assigned to</p>
-                    <div class="task-profiles">
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                    </div>
-                  </div>
-                  <div class="task-progress info">
-                    <p>In progress</p>
-                    <span>25%</span>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <p class="task-due">3 days remaining</p>
-                <h3 class="task-title">Lorem ipsum dolor</h3>
-                <div class="task-bottom-holder">
-                  <div class="task-assigned">
-                    <p>Assigned to</p>
-                    <div class="task-profiles">
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                      <div class="assigned-profile-holder" style="background-image: url('https://images.pexels.com/photos/160426/lead-man-sun-sunglasses-160426.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"></div>
-                    </div>
-                  </div>
-                  <div class="task-progress info">
-                    <p>In progress</p>
-                    <span>25%</span>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
+
       </div>
     </div>
   </div>
@@ -334,6 +64,7 @@
 import { orderBy } from 'lodash'
 import { mapState } from 'vuex';
 import io from 'socket.io-client'
+import draggable from 'vuedraggable'
 
 const socket = io(`http://${process.env.API_URL || 'localhost'}:${process.env.API_PORT || 5000}`)
 
@@ -343,7 +74,201 @@ export default {
   },
   data() {
     return {
-      filterProjects: false
+      filterProjects: false,
+      projects: [
+        {
+          id: 1,
+          name: 'Project name',
+          progress: '25',
+          tasks: [
+            {
+              id: 1,
+              title: 'Lorem ipsum dolor',
+              dueAt: '2018-09-23 21:16:56.053519+01',
+              status: 'in progress',
+              progress: '25',
+              assignedTo: [
+                {
+                  id: 1,
+                  name: 'Hugo Carneiro',
+                  profilePicture: 'http://cdn.colabora.io/logo-tgd.png'
+                },
+                {
+                  id: 2,
+                  name: 'Miguel Maia',
+                  profilePicture: 'http://cdn.colabora.io/logo-tgd.png'
+                }
+              ]
+            },
+            {
+              id: 2,
+              title: 'Lorem ipsum dolor',
+              dueAt: '2018-09-23 21:16:56.053519+01',
+              status: 'in progress',
+              progress: '25',
+              assignedTo: [
+                {
+                  id: 1,
+                  name: 'Hugo Carneiro',
+                  profilePicture: 'http://cdn.colabora.io/logo-tgd.png'
+                },
+                {
+                  id: 2,
+                  name: 'Miguel Maia',
+                  profilePicture: 'http://cdn.colabora.io/logo-tgd.png'
+                }
+              ]
+            },
+            {
+              id: 3,
+              title: 'Lorem ipsum dolor',
+              dueAt: '2018-09-23 21:16:56.053519+01',
+              status: 'in progress',
+              progress: '25',
+              assignedTo: [
+                {
+                  id: 1,
+                  name: 'Hugo Carneiro',
+                  profilePicture: 'http://cdn.colabora.io/logo-tgd.png'
+                },
+                {
+                  id: 2,
+                  name: 'Miguel Maia',
+                  profilePicture: 'http://cdn.colabora.io/logo-tgd.png'
+                }
+              ]
+            }
+          ]
+        },
+        {
+          id: 2,
+          name: 'Project name',
+          progress: '25',
+          tasks: [
+            {
+              id: 4,
+              title: 'Lorem ipsum dolor',
+              dueAt: '2018-09-02 21:16:56.053519+01',
+              status: 'in progress',
+              progress: '25',
+              assignedTo: [
+                {
+                  id: 1,
+                  name: 'Hugo Carneiro',
+                  profilePicture: 'http://cdn.colabora.io/logo-tgd.png'
+                },
+                {
+                  id: 2,
+                  name: 'Miguel Maia',
+                  profilePicture: 'http://cdn.colabora.io/logo-tgd.png'
+                }
+              ]
+            },
+            {
+              id: 5,
+              title: 'Lorem ipsum dolor',
+              dueAt: '2018-09-07 21:16:56.053519+01',
+              status: 'in progress',
+              progress: '25',
+              assignedTo: [
+                {
+                  id: 1,
+                  name: 'Hugo Carneiro',
+                  profilePicture: 'http://cdn.colabora.io/logo-tgd.png'
+                },
+                {
+                  id: 2,
+                  name: 'Miguel Maia',
+                  profilePicture: 'http://cdn.colabora.io/logo-tgd.png'
+                }
+              ]
+            },
+            {
+              id: 6,
+              title: 'Lorem ipsum dolor',
+              dueAt: '2018-08-30 21:16:56.053519+01',
+              status: 'in progress',
+              progress: '25',
+              assignedTo: [
+                {
+                  id: 1,
+                  name: 'Hugo Carneiro',
+                  profilePicture: 'http://cdn.colabora.io/logo-tgd.png'
+                },
+                {
+                  id: 2,
+                  name: 'Miguel Maia',
+                  profilePicture: 'http://cdn.colabora.io/logo-tgd.png'
+                }
+              ]
+            }
+          ]
+        },
+        {
+          id: 3,
+          name: 'Project name',
+          progress: '25',
+          tasks: [
+            {
+              id: 7,
+              title: 'Lorem ipsum dolor',
+              dueAt: '2018-09-23 21:16:56.053519+01',
+              status: 'in progress',
+              progress: '25',
+              assignedTo: [
+                {
+                  id: 1,
+                  name: 'Hugo Carneiro',
+                  profilePicture: 'http://cdn.colabora.io/logo-tgd.png'
+                },
+                {
+                  id: 2,
+                  name: 'Miguel Maia',
+                  profilePicture: 'http://cdn.colabora.io/logo-tgd.png'
+                }
+              ]
+            },
+            {
+              id: 8,
+              title: 'Lorem ipsum dolor',
+              dueAt: '2018-09-23 21:16:56.053519+01',
+              status: 'in progress',
+              progress: '25',
+              assignedTo: [
+                {
+                  id: 1,
+                  name: 'Hugo Carneiro',
+                  profilePicture: 'http://cdn.colabora.io/logo-tgd.png'
+                },
+                {
+                  id: 2,
+                  name: 'Miguel Maia',
+                  profilePicture: 'http://cdn.colabora.io/logo-tgd.png'
+                }
+              ]
+            },
+            {
+              id: 9,
+              title: 'Lorem ipsum dolor',
+              dueAt: '2018-09-23 21:16:56.053519+01',
+              status: 'in progress',
+              progress: '25',
+              assignedTo: [
+                {
+                  id: 1,
+                  name: 'Hugo Carneiro',
+                  profilePicture: 'http://cdn.colabora.io/logo-tgd.png'
+                },
+                {
+                  id: 2,
+                  name: 'Miguel Maia',
+                  profilePicture: 'http://cdn.colabora.io/logo-tgd.png'
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   },
   head () {
@@ -351,12 +276,10 @@ export default {
       title: 'My Tasks'
     }
   },
+  components: {
+    draggable,
+  },
   computed: {
-    ...mapState({
-      projects: state => {
-        return state.projects.list
-      }
-    })
   },
   methods: {
     sendTask() {
@@ -371,6 +294,10 @@ export default {
         .then((task) => {
           socket.emit('NEW TASK', task)
         })
+    },
+    onEnd(e) {
+      console.log(e);
+      console.log(this.projects)
     }
   },
   mounted() {
