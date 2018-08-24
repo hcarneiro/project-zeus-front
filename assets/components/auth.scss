@@ -6,6 +6,10 @@
   .decor-panel-wrapper {
     width: 50%;
     height: 100%;
+
+    @media screen and (max-width: 639px) {
+      width: 100%;
+    }
   }
 
   .login-panel-wrapper {
@@ -20,6 +24,10 @@
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+
+    @media screen and (max-width: 639px) {
+      display: none;
+    }
   }
 }
 
@@ -133,6 +141,10 @@
     a {
       color: $dark-grey;
     }
+
+    .checkbox-icon ~ div {
+      text-align: right;
+    }
   }
 
   .auth-btn-controls {
@@ -152,6 +164,17 @@
 
       & + button {
         margin-left: 20px;
+      }
+    }
+
+    @media screen and (max-width: 914px) {
+      button {
+        width: 100%;
+
+        & + button {
+          margin-left: 0;
+          margin-top: 20px;
+        }
       }
     }
   }
