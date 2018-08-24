@@ -8,14 +8,16 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Your task management tool.' },
-      { property: 'og:title', content: '2DO' },
-      { property: 'og:description', content: 'Your task management tool.' },
-      { property: 'og:image', content: '' },
+      { hid: 'description', name: 'description', content: 'Your project management tool' },
+      { property: 'og:title', content: 'Colabora.io' },
+      { property: 'og:description', content: 'Your project management tool' },
       { property: 'og:url', content: 'http://www.colabora.io' },
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { property: 'og:site_name', content: '2DO' },
-      { name: 'twitter:image:alt', content: 'Your task management tool.' }
+      { property: 'og:site_name', content: 'Colabora.io' },
+      { property: 'og:image', content: 'http://www.colabora.io/images/fog-foggy-forest-4827.jpg' },
+      { property: 'og:image:height', content: '1106' },
+      { property: 'og:image:width', content: '2113'},
+      { name: 'msapplication-TileColor', content: '#2b5797' },
+      { name: 'theme-color', content: '#ffffff' }
     ],
     script: [
       { src: '/vendor/jquery/jquery-3.3.1.min.js' },
@@ -23,7 +25,12 @@ module.exports = {
       { src: '/vendor/bootstrap/js/bootstrap.min.js' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
+      { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
+      { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'manifest', href: '/site.webmanifest' },
+      { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#ff744b' }
     ]
   },
   /*
