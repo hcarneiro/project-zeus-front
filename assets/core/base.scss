@@ -18,6 +18,16 @@ $brand-tertiary: #009688;
 
 $secondaryBackground: #f4f7f8;
 
+// Page transitions
+.page-enter-active,
+.page-leave-active {
+  transition: opacity .2s
+}
+.page-enter,
+.page-leave-active {
+  opacity: 0
+}
+
 // Base styles
 html,
 body,
