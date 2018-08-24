@@ -49,13 +49,17 @@ module.exports = {
     middleware: 'auth'
   },
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/google-analytics'
   ],
   axios: {
     /* set API_URL environment variable to configure access to the API
     */
     baseURL: `http://${process.env.API_URL || 'localhost'}:${process.env.API_PORT || 5000}`,
     credentials: true
+  },
+  'google-analytics': {
+    id: 'UA-124596999-1'
   },
   plugins: [
     '~/plugins/filters',
