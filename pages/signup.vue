@@ -6,9 +6,8 @@
     </div>
     <div class="auth-holder signup" v-if="!signedUp">
       <h1>Sign up</h1>
-      <p v-if="!inProduction">The platform is still in development. Check back at a later date.</p>
-      <p v-if="inProduction" class="text-muted">Start your <strong>Free</strong> account</p>
-      <form @submit.prevent="verifyUserData" v-if="inProduction">
+      <p class="text-muted">Start your <strong>Free</strong> account</p>
+      <form @submit.prevent="verifyUserData">
         <div class="auth-form">
           <div class="form-group auth-form-field">
             <label for="first-name">First name</label>
@@ -72,8 +71,7 @@ export default {
       error: '',
       isVerifying: false,
       signedUp: false,
-      passwordMinLength: characterLimits.signupPasswordMinLength,
-      inProduction: false
+      passwordMinLength: characterLimits.signupPasswordMinLength
     }
   },
   methods: {
