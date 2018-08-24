@@ -6,8 +6,9 @@
     </div>
     <div class="auth-holder">
       <h1>Welcome!</h1>
-      <p class="text-muted">Login to your account</p>
-      <form @submit.prevent="login">
+      <p v-if="!inProduction">This platform is still in development. Check back at a later date</p>
+      <p class="text-muted" v-if="inProduction">Login to your account</p>
+      <form @submit.prevent="login" v-if="inProduction">
         <div class="auth-form">
           <div class="form-group auth-form-field">
             <label for="login-email">Email address</label>
@@ -55,7 +56,8 @@ export default {
       password: '',
       error: undefined,
       isAuthenticating: false,
-      remember: false
+      remember: false,
+      inProduction: false
     }
   },
   head () {
