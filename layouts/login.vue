@@ -7,11 +7,11 @@
 </template>
 <script>
 const imageMapping = {
-  'login': 'background-image: url("/images/daylight-forest-glossy-443446.jpg")',
-  'signup': 'background-image: url("/images/daylight-environment-forest-459225.jpg")',
-  'forgot-password': 'background-image: url("/images/fog-foggy-forest-4827.jpg")',
-  'verify-token': 'background-image: url("/images/bright-countryside-dawn-302804.jpg")',
-  'reset-password-token': 'background-image: url("/images/adventure-calm-clouds-414171.jpg")'
+  'login': 'background-image: url("/images/login.jpg")',
+  'signup': 'background-image: url("/images/sign-up.jpg")',
+  'forgot-password': 'background-image: url("/images/forgot-password.jpg")',
+  'verify-token': 'background-image: url("/images/verify-token.jpg")',
+  'reset-password-token': 'background-image: url("/images/reset.jpg")'
 }
 export default {
   data () {
