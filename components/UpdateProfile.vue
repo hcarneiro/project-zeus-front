@@ -146,6 +146,8 @@ export default {
   },
   methods: {
     savePassword() {
+      this.$ga.event('Profile Settings', 'Change password')
+
       const userPassword = {
         password: this.currentPassword,
         newPassword: this.newPassword
@@ -171,6 +173,8 @@ export default {
         })
     },
     saveSettings() {
+      this.$ga.event('Profile Settings', 'Save settings')
+
       const userData = {
         firstName: this.firstName,
         lastName: this.lastName,
@@ -199,6 +203,7 @@ export default {
     },
     uploadPhoto(event) {
       this.isUploading = true
+      this.$ga.event('Profile Settings', 'Upload photo')
 
       const file = event.target.files[0]
       let formData = new FormData()
@@ -221,6 +226,7 @@ export default {
 
       this.$store.dispatch('users/userUpdate', userData)
       this.userPicture = ''
+      this.$ga.event('Profile Settings', 'Clear photo')
     },
     onClose(options) {
       this.$emit('closePanel', options);
