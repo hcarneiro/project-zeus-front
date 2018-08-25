@@ -13,7 +13,7 @@ module.exports = {
       { property: 'og:description', content: 'Your project management tool' },
       { property: 'og:url', content: 'http://www.colabora.io' },
       { property: 'og:site_name', content: 'Colabora.io' },
-      { property: 'og:image', content: 'http://www.colabora.io/images/fog-foggy-forest-4827.jpg' },
+      { property: 'og:image', content: 'http://www.colabora.io/images/login.jpg' },
       { property: 'og:image:height', content: '1106' },
       { property: 'og:image:width', content: '2113'},
       { name: 'msapplication-TileColor', content: '#2b5797' },
