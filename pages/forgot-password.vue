@@ -65,6 +65,8 @@ export default {
             this.error = response.data.message
           } else if (response.body) {
             this.error = response.body.message
+          } else if (response.response && response.response.data) {
+            this.error = response.response.data.message
           } else {
             this.error = 'Invalid email address.'
           }

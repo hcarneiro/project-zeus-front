@@ -96,10 +96,13 @@ export default {
             return
           }
 
-          const error = response.data
-            ? response.data.message
-            : 'Could not authenticate. Please try later.'
-          this.error = error
+          if (response.data) {
+            this.error = response.data.message
+          } else if (response.response && response.response.data) {
+            this.error = response.response.data.message
+          } else {
+            this.error = 'Could not authenticate. Please try later.'
+          }          
         })
     }
   },
