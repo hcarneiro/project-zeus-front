@@ -1,6 +1,6 @@
 <template>
-  <div class="tasks-view-holder">
-    <div class="tasks-heading">
+  <div class="content-view-holder">
+    <div class="view-heading">
       <div class="heading-title-holder">
         <h1>My Tasks</h1>
         <div class="task-add" v-on:click.prevent="sendTask">
