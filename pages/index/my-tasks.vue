@@ -69,9 +69,6 @@ import draggable from 'vuedraggable'
 const socket = io(`http://${process.env.API_URL || 'localhost'}:${process.env.API_PORT || 5000}`)
 
 export default {
-  async fetch({store}) {
-    // await store.dispatch('projects/getProjects', {id: 2})
-  },
   data() {
     return {
       filterProjects: false,
