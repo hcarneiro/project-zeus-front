@@ -57,74 +57,42 @@ $border-radius: 10px;
           font-size: 1.4em;
         }
 
-        .inbox-item-description {
-          margin-top: 8px;
-
-          .action-user {
+        .action-user {
+          margin-top: 10px;
+          .title {
             display: flex;
             align-items: center;
+            font-size: 1.1em;
+            line-height: 1.1em;
+            color: $dark-grey;
 
-            .profile-holder {
-              position: relative;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              width: 40px;
-              height: 40px;
-              border: 1px solid lighten($black, 90%);
-              border-radius: 40px;
-              background-color: #fff;
-              cursor: pointer;
-              overflow: hidden;
-              font-size: 0.8em;
-              margin-right: 10px;
+            .project-status {
+              min-width: 12px;
+              width: 12px;
+              height: 12px;
+              background-color: lighten($black, 95%);
+              border-radius: 12px;
+              margin-left: 10px;
 
-              .profile-picture {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 40px;
-                height: 40px;
-                background-color: $white;
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-position: center center;
+              &.info {
+                @include task-progress-variant($brand-primary);
+              }
+              &.hold {
+                @include task-progress-variant($brand-secondary);
+              }
+              &.danger {
+                @include task-progress-variant($red);
+              }
+              &.success {
+                @include task-progress-variant($green);
               }
             }
-
-            .action {
-              color: lighten($black, 40%);
-
-              .title {
-                display: flex;
-                align-items: center;
-                font-size: 1.1em;
-
-                .project-status {
-                  width: 12px;
-                  height: 12px;
-                  background-color: lighten($black, 95%);
-                  border-radius: 12px;
-                  margin-left: 10px;
-
-                  &.info {
-                    @include task-progress-variant($brand-primary);
-                  }
-                  &.hold {
-                    @include task-progress-variant($brand-secondary);
-                  }
-                  &.danger {
-                    @include task-progress-variant($red);
-                  }
-                  &.success {
-                    @include task-progress-variant($green);
-                  }
-                }
-              }
-              .description {
-                font-size: 0.9em;
-              }
-            }
+          }
+          .description {
+            color: lighten($black, 40%);
+            margin-top: 5px;
+            line-height: 1.3em;
+            font-size: 0.9em;
           }
         }
 

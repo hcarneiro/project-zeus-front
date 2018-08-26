@@ -29,16 +29,8 @@
               <div class="inbox-item-date">Monday at 13:32</div>
             </div>
             <div class="inbox-item-title">Redesign icons</div>
-            <div class="inbox-item-description">
-              <div class="action-user">
-                <div class="profile-holder">
-                  <div class="profile-picture" style="background-image: url('http://cdn.colabora.io/logo-200.png');"></div>
-                  <i class="far fa-user"></i>
-                </div>
-                <div class="action">
-                  <div class="title">John Smith assigned to you</div>
-                </div>
-              </div>
+            <div class="action-user">
+              <div class="title">John Smith assigned to you</div>
             </div>
           </li>
 
@@ -48,17 +40,9 @@
               <div class="inbox-item-date">2018-08-13 . 13:32</div>
             </div>
             <div class="inbox-item-title">Update developer tools</div>
-            <div class="inbox-item-description">
-              <div class="action-user">
-                <div class="profile-holder">
-                  <div class="profile-picture" style="background-image: url('http://cdn.colabora.io/logo-200.png');"></div>
-                  <i class="far fa-user"></i>
-                </div>
-                <div class="action">
-                  <div class="title">John Smith added new task</div>
-                  <div class="description">Go over research of possible frameworks</div>
-                </div>
-              </div>
+            <div class="action-user">
+              <div class="title">John Smith added new task</div>
+              <div class="description">Go over research of possible frameworks</div>
             </div>
           </li>
 
@@ -68,17 +52,9 @@
               <div class="inbox-item-date">Monday at 13:32</div>
             </div>
             <div class="inbox-item-title">Website launch</div>
-            <div class="inbox-item-description">
-              <div class="action-user">
-                <div class="profile-holder">
-                  <div class="profile-picture" style="background-image: url('http://cdn.colabora.io/logo-200.png');"></div>
-                  <i class="far fa-user"></i>
-                </div>
-                <div class="action">
-                  <div class="title">John Smith updated project status <div class="project-status success"></div></div>
-                  <div class="description">This is all on track to meet the deadline</div>
-                </div>
-              </div>
+            <div class="action-user">
+              <div class="title">John Smith updated project status <div class="project-status success"></div></div>
+              <div class="description">This is all on track to meet the deadline</div>
             </div>
           </li>
 
@@ -88,14 +64,8 @@
               <div class="inbox-item-date">Monday at 13:32</div>
             </div>
             <div class="inbox-item-title">Research axios.js for endpoint requests</div>
-            <div class="inbox-item-description">
-              <div class="action-user">
-                <div class="profile-holder">
-                  <div class="profile-picture" style="background-image: url('http://cdn.colabora.io/logo-200.png');"></div>
-                  <i class="far fa-user"></i>
-                </div>
-                <div class="action">John Smith assigned to you</div>
-              </div>
+            <div class="action-user">
+              <div class="title">John Smith assigned to you</div>
             </div>
           </li>
         </ul>
