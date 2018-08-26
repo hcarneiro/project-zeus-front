@@ -18,7 +18,10 @@
       </li>
       <div class="sidebar-collapse collapse" id="collapseProjects">
         <div class="collapse-body">
-          Anim pariatur cliche reprehenderit.
+          <ul>
+            <div v-if="!projects.length" class="btn btn-secondary">Create a project</div>
+            <nuxt-link v-for="project in projects" :key="project.id" class="sidebar-list-subitem" active-class="active" tag="li" :to="`/project/${project.id}`">{{ project.name }}</nuxt-link>
+          </ul>
         </div>
       </div>
       <li class="sidebar-list-item collapsed" data-toggle="collapse" data-target="#collapsePersonal" v-bind:class="{ 'is-open': personalIsActive }" v-on:click="personalIsActive = !personalIsActive">
@@ -26,7 +29,7 @@
       </li>
       <div class="sidebar-collapse collapse" id="collapsePersonal">
         <div class="collapse-body">
-          Anim pariatur cliche reprehenderit.
+          <div v-if="!personal.length" class="btn btn-secondary">Create a task</div>
         </div>
       </div>
       <li class="sidebar-list-item collapsed" data-toggle="collapse" data-target="#collapseTeams" v-bind:class="{ 'is-open': teamsIsActive }" v-on:click="teamsIsActive = !teamsIsActive">
@@ -34,7 +37,10 @@
       </li>
       <div class="sidebar-collapse collapse" id="collapseTeams">
         <div class="collapse-body">
-          Anim pariatur cliche reprehenderit.
+          <div v-if="!teams.length" class="btn btn-secondary">Create a team</div>
+          <ul>
+            <nuxt-link v-for="team in teams" :key="team.id" class="sidebar-list-subitem" active-class="active" tag="li" :to="`/team/${team.id}`">{{ team.name }}</nuxt-link>
+          </ul>
         </div>
       </div>
     </ul>
@@ -56,11 +62,11 @@
 
 <script>
 import { mapState } from 'vuex';
+import { orderBy } from 'lodash';
 
 export default {
   data() {
     return {
-      projects: [],
       personal: [],
       projectsIsActive: false,
       personalIsActive: false,
@@ -72,6 +78,13 @@ export default {
     ...mapState({
       organizations: state => {
         return state.organizations.userOrganizations
+      },
+      projects: state => {
+        const projects = orderBy(state.projects.list, ['name'], ['asc'])
+        return projects
+      },
+      teams: state => {
+        return state.teams.list
       }
     }),
     organizationName() {

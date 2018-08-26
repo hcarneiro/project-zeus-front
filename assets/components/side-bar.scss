@@ -88,6 +88,31 @@
       .collapse-body {
         background-color: darken($secondaryBackground, 5%);
         padding: 15px 30px;
+
+        .btn {
+          font-size: 0.8em;
+          margin-left: 40px;
+        }
+
+        ul {
+          padding: 0 0 0 40px;
+          list-style: none;
+
+          .sidebar-list-subitem {
+            cursor: pointer;
+            padding: 10px 0;
+            color: lighten($black, 65%);
+
+            &.active,
+            &.active:hover {
+              color: $dark-grey;
+            }
+
+            &:hover {
+              color: $dark-grey;
+            }
+          }
+        }
       }
     }
   }

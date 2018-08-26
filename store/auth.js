@@ -80,6 +80,8 @@ export const actions = {
     })
 
     dispatch('organizations/get', null, { root: true })
+    dispatch('projects/getProjects', null, { root: true })
+    dispatch('teams/getTeams', null, { root: true })
   },
   verifyUser({state, commit, dispatch}, forceCheck, setCookie) {
     return dispatch('isLoggedIn')
