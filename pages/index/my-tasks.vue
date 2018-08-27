@@ -3,7 +3,7 @@
     <div class="view-heading">
       <div class="heading-title-holder">
         <h1>My Tasks</h1>
-        <div class="task-add" v-on:click.prevent="sendTask">
+        <div class="task-add" v-bind:class="{ 'active': isOpen }" v-on:click="showPanel">
           <i class="fas fa-plus"></i>
         </div>
       </div>
@@ -57,10 +57,13 @@
 
       </div>
     </div>
+    <slideout-panel></slideout-panel>
   </div>
 </template>
 
 <script>
+import { vueSlideoutPanelService } from 'vue2-slideout-panel'
+import AddTask from '~/components/AddTask.vue'
 import { orderBy } from 'lodash'
 import { mapState } from 'vuex';
 import io from 'socket.io-client'
@@ -69,8 +72,14 @@ import draggable from 'vuedraggable'
 const socket = io(`http://${process.env.API_URL || 'localhost'}:${process.env.API_PORT || 5000}`)
 
 export default {
+  head () {
+    return {
+      title: 'My Tasks'
+    }
+  },
   data() {
     return {
+      isOpen: false,
       filterProjects: false,
       projects: [
         {
@@ -268,15 +277,8 @@ export default {
       ]
     }
   },
-  head () {
-    return {
-      title: 'My Tasks'
-    }
-  },
   components: {
     draggable,
-  },
-  computed: {
   },
   methods: {
     sendTask() {
@@ -295,6 +297,19 @@ export default {
     onEnd(e) {
       console.log(e);
       console.log(this.projects)
+    },
+    showPanel() {
+      this.isOpen = true
+      vueSlideoutPanelService.show({
+          component: AddTask,
+          cssClass: 'add-task-overlay',
+          props: {
+            title: 'Add a task'
+          }
+        })
+      .then(() => {
+        this.isOpen = false
+      })
     }
   },
   mounted() {

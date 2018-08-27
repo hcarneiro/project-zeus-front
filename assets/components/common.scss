@@ -36,6 +36,16 @@
       &:active {
         box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, .1);
       }
+
+      &.active {
+        i {
+          transform: rotate(225deg);
+        }
+      }
+
+      i {
+        transition: all 0.2s ease-in-out;
+      }
     }
 
     .archive-activity {

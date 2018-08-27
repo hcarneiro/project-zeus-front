@@ -16,9 +16,7 @@
       <div class="user-name">{{ userFullName }}</div>
       <div class="user-title" v-if="userTitle">{{ userTitle }}</div>
     </div>
-    <no-ssr>
-      <slideout-panel></slideout-panel>
-    </no-ssr>
+    <slideout-panel></slideout-panel>
   </div>
 </template>
 
@@ -49,7 +47,6 @@ export default {
         if (state.auth.currentUser.userTitle) {
           return state.auth.currentUser.userTitle
         }
-        
         return ''
       }
     })
@@ -60,7 +57,8 @@ export default {
           component: UpdateProfile,
           cssClass: 'update-profile-overlay',
           props: {
-            user: this.$store.state.auth.currentUser
+            user: this.$store.state.auth.currentUser,
+            title: 'My profile settings'
           }
         })
     }

@@ -1,6 +1,6 @@
 <template>
   <div class="slide-overlay-wrapper">
-    <slide-panel-header @closeProfilePanel="onClose"></slide-panel-header>
+    <slide-panel-header :title="title" @closeProfilePanel="onClose"></slide-panel-header>
     <div class="slide-overlay-body">
       <vue-tabs>
         <v-tab title="Profile">
@@ -109,6 +109,10 @@ export default {
     user: {
       type: Object,
       required: true
+    },
+    title: {
+      type: String,
+      required: true
     }
   },
   data() {
@@ -140,7 +144,6 @@ export default {
       if (this.userPicture) {
         return `background-image: url('${this.userPicture}')`
       }
-
       return ''
     }
   },
