@@ -521,7 +521,21 @@
       padding: 10px 0;
       border-top: 1px solid lighten($black, 90%);
 
-      button.quill-button {
+      .quill-button {
+        &.emoji-trigger {
+          display: inline-block;
+          float: left;
+          height: 24px;
+          padding: 3px 5px;
+          line-height: 0;
+          cursor: pointer;
+
+          path {
+            fill: lighten($black, 70%);
+            stroke: lighten($black, 70%);
+          }
+        }
+
         .ql-fill {
           fill: lighten($black, 70%);
         }
@@ -531,6 +545,13 @@
         }
 
         &:hover {
+          &.emoji-trigger {
+            path {
+              fill: lighten($black, 30%);
+              stroke: lighten($black, 30%);
+            }
+          }
+
           .ql-fill {
             fill: lighten($black, 30%);
           }
@@ -539,6 +560,13 @@
             stroke: lighten($black, 30%);
           }
         }
+      }
+
+      .emoji-mart {
+        position: fixed;
+        z-index: 1;
+        bottom: 30px;
+        right: 30px;
       }
     }
   }

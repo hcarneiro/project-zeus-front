@@ -50,12 +50,17 @@
             <div class="form-group profile-form-field">
               <label>About me</label>
               <div id="editor"></div>
-              <div id="toolbar">
+              <div id="toolbar" v-click-outside="vcoConfig">
                 <button class="quill-button ql-bold" data-toggle="tooltip" data-placement="top" :title="`Bold ${OSKey} + B`"></button>
                 <button class="quill-button ql-italic" data-toggle="tooltip" data-placement="top" :title="`Italics ${OSKey} + I`"></button>
                 <button class="quill-button ql-underline" data-toggle="tooltip" data-placement="top" :title="`Underline ${OSKey} + U`"></button>
                 <button class="quill-button ql-clean" data-toggle="tooltip" data-placement="top" title="Clear formatting"></button>
-                <picker title="Pick an emoji" emoji="point_up" />
+                <div class="quill-button emoji-trigger" :class="{ 'triggered': showEmojiPicker }" @mousedown.prevent="toggleEmojiPicker" data-toggle="tooltip" data-placement="top" title="Emojis">
+                  <svg style="width:20px;height:20px" viewBox="0 0 24 24">
+                    <path fill="#888888" d="M20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12M22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12M10,9.5C10,10.3 9.3,11 8.5,11C7.7,11 7,10.3 7,9.5C7,8.7 7.7,8 8.5,8C9.3,8 10,8.7 10,9.5M17,9.5C17,10.3 16.3,11 15.5,11C14.7,11 14,10.3 14,9.5C14,8.7 14.7,8 15.5,8C16.3,8 17,8.7 17,9.5M12,17.23C10.25,17.23 8.71,16.5 7.81,15.42L9.23,14C9.68,14.72 10.75,15.23 12,15.23C13.25,15.23 14.32,14.72 14.77,14L16.19,15.42C15.29,16.5 13.75,17.23 12,17.23Z" />
+                  </svg>
+                </div>
+                <picker v-show="showEmojiPicker" color="#03A9F4" title="Pick an emoji" emoji="point_up" @select="addEmoji" />
               </div>
             </div>
             <div class="row">
@@ -109,8 +114,8 @@
 </template>
 
 <script>
-import { Picker } from 'emoji-mart-vue'
 import SlidePanelHeader from '~/components/SlidePanelHeader.vue'
+import { Picker } from 'emoji-mart-vue'
 
 export default {
   props: {
@@ -143,7 +148,7 @@ export default {
       accountError: undefined,
       isUploading: false,
       OSKey: navigator.platform.indexOf('Mac') > -1 ? '⌘' : 'ctrl',
-      converterConfig: {},
+      showEmojiPicker: false,
       quillEditor: undefined,
       editorOption: {
         modules: {
@@ -155,6 +160,11 @@ export default {
           ]
         },
         theme: 'bubble'
+      },
+      vcoConfig: {
+        handler: this.closeEmojis,
+        middleware: this.middleware,
+        events: ['dblclick']
       }
     }
   },
@@ -171,6 +181,22 @@ export default {
     }
   },
   methods: {
+    toggleEmojiPicker() {
+      this.showEmojiPicker = !this.showEmojiPicker
+    },
+    closeEmojis() {
+      this.showEmojiPicker = false
+    },
+    middleware () {
+      return true
+    },
+    addEmoji(emoji) {
+      this.quillEditor.focus();
+      const range = this.quillEditor.getSelection()
+
+      this.quillEditor.insertText(range.index, emoji.native)
+      this.toggleEmojiPicker()
+    },
     savePassword() {
       this.$ga.event('Profile Settings', 'Change password')
 

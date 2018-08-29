@@ -146,3 +146,28 @@
     }
   }
 }
+.emoji-mart-search {
+  margin: 10px 6px;
+
+  input {
+    padding: .5em 1em !important;
+    border-color: #afafaf !important;
+
+    &:focus {
+      border: 1px solid #03A9F4 !important;
+    }
+  }
+}
+
+.emoji-mart-category-label {
+  color: #999999;
+  font-size: 0.8em;
+}
+
+.emoji-mart-anchor {
+  cursor: pointer;
+
+  path {
+    fill: #afafaf;
+  }
+}
