@@ -62,6 +62,7 @@ module.exports = {
     id: 'UA-124596999-1'
   },
   plugins: [
+    '~/plugins/quill-editor',
     '~/plugins/filters',
     '~/plugins/slideout-panel',
     '~/plugins/vue-nav-tabs'
@@ -87,6 +88,9 @@ module.exports = {
   css: [
     '@/node_modules/bootstrap/scss/bootstrap.scss',
     '@/node_modules/@fortawesome/fontawesome-free/css/all.css',
-    '@/assets/index.scss'
+    '@/assets/index.scss',
+    'quill/dist/quill.core.css',
+    'quill/dist/quill.snow.css',
+    'quill/dist/quill.bubble.css'
   ]
 }
