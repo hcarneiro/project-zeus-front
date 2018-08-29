@@ -150,7 +150,7 @@ export default {
       },
       userBio: state => {
         if (state.auth.currentUser.userBio) {
-          return state.auth.currentUser.userBio
+          return state.auth.currentUser.userBio.html
         }
       },
       userLocation: state => {

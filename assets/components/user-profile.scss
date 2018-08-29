@@ -505,6 +505,42 @@
       margin-top: -20px;
       transition: color 0.15s ease-in-out;
     }
+
+    .ql-container.ql-snow {
+      border: none;
+      font-size: 1.2em;
+
+      .ql-editor {
+        padding: 10px 0;
+        color: #495057;
+      }
+    }
+
+    .ql-toolbar.ql-snow {
+      border: none;
+      padding: 10px 0;
+      border-top: 1px solid lighten($black, 90%);
+
+      button.quill-button {
+        .ql-fill {
+          fill: lighten($black, 70%);
+        }
+
+        .ql-stroke {
+          stroke: lighten($black, 70%);
+        }
+
+        &:hover {
+          .ql-fill {
+            fill: lighten($black, 30%);
+          }
+
+          .ql-stroke {
+            stroke: lighten($black, 30%);
+          }
+        }
+      }
+    }
   }
 
   .btn {

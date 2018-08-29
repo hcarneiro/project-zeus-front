@@ -48,8 +48,15 @@
               <input type="text" class="form-control" id="job_title" v-model="userTitle">
             </div>
             <div class="form-group profile-form-field">
-              <label for="bio">About me</label>
-              <textarea class="form-control" id="bio" placeholder="I usually work from 9am to 6pm. Give me new tasks and I love binge watching series on Netflix" rows="5" v-model="userBio"></textarea>
+              <label>About me</label>
+              <div id="editor"></div>
+              <div id="toolbar">
+                <button class="quill-button ql-bold" data-toggle="tooltip" data-placement="top" :title="`Bold ${OSKey} + B`"></button>
+                <button class="quill-button ql-italic" data-toggle="tooltip" data-placement="top" :title="`Italics ${OSKey} + I`"></button>
+                <button class="quill-button ql-underline" data-toggle="tooltip" data-placement="top" :title="`Underline ${OSKey} + U`"></button>
+                <button class="quill-button ql-clean" data-toggle="tooltip" data-placement="top" title="Clear formatting"></button>
+                <picker title="Pick an emoji" emoji="point_up" />
+              </div>
             </div>
             <div class="row">
               <div class="form-group profile-form-field col-sm-6">
@@ -102,6 +109,7 @@
 </template>
 
 <script>
+import { Picker } from 'emoji-mart-vue'
 import SlidePanelHeader from '~/components/SlidePanelHeader.vue'
 
 export default {
@@ -133,11 +141,26 @@ export default {
       accountIsSubmitting: false,
       error: undefined,
       accountError: undefined,
-      isUploading: false
+      isUploading: false,
+      OSKey: navigator.platform.indexOf('Mac') > -1 ? '⌘' : 'ctrl',
+      converterConfig: {},
+      quillEditor: undefined,
+      editorOption: {
+        modules: {
+          toolbar: [
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ 'align': [] }],
+            ['clean'],
+            ['link']
+          ]
+        },
+        theme: 'bubble'
+      }
     }
   },
   components: {
-    SlidePanelHeader
+    SlidePanelHeader,
+    Picker
   },
   computed: {
     profilePicture() {
@@ -177,13 +200,20 @@ export default {
     },
     saveSettings() {
       this.$ga.event('Profile Settings', 'Save settings')
+      
+      // Get user bio data
+      const delta = this.quillEditor.getContents()
+      const userBio = {
+        delta: delta,
+        html: this.quillEditor.root.innerHTML
+      }
 
       const userData = {
         firstName: this.firstName,
         lastName: this.lastName,
         email: this.email,
         userTitle: this.userTitle,
-        userBio: this.userBio,
+        userBio: userBio,
         userCity: this.userCity,
         userCountry: this.userCountry,
         userResponsabilities: this.userResponsabilities,
@@ -234,6 +264,20 @@ export default {
     onClose(options) {
       this.$emit('closePanel', options);
     }
+  },
+  mounted() {
+    $('[data-toggle="tooltip"]').tooltip({ boundary: 'window' })
+
+    this.quillEditor = new Quill('#editor', {
+      modules: {
+        toolbar: {
+          container: '#toolbar'
+        }
+      },
+      theme: 'snow'
+    })
+
+    this.quillEditor.setContents(this.userBio.delta)
   }
 }
 </script>
