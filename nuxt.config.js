@@ -65,7 +65,8 @@ module.exports = {
     '~/plugins/quill-editor',
     '~/plugins/filters',
     '~/plugins/slideout-panel',
-    '~/plugins/vue-nav-tabs'
+    '~/plugins/vue-nav-tabs',
+    '~/plugins/click-outside'
   ],
   /*
   ** Build configuration

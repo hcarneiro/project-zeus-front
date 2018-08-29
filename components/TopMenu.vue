@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import ClickOutside from 'vue-click-outside'
 import { mapState } from 'vuex';
 
 export default {
@@ -40,9 +39,6 @@ export default {
   },
   props: {
     title: String
-  },
-  directives: {
-    ClickOutside
   },
   computed: {
     ...mapState({
