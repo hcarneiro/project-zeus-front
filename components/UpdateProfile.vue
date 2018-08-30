@@ -48,6 +48,10 @@
               <input type="text" class="form-control" id="job_title" v-model="userTitle">
             </div>
             <div class="form-group profile-form-field">
+              <label for="job_title">Key Responsabilities</label>
+              <vue-tags-input v-model="userResponsability" :tags="userResponsabilities" :add-on-key="[13, 188]" :separators="[',']" @tags-changed="newTags => userResponsabilities = newTags" />
+            </div>
+            <div class="form-group profile-form-field">
               <label>About me</label>
               <div id="editor"></div>
               <div id="toolbar" v-click-outside="vcoConfig">
@@ -139,6 +143,7 @@ export default {
       userCity: this.user.userCity,
       userCountry: this.user.userCountry,
       userResponsabilities: this.user.userResponsabilities,
+      userResponsability: '',
       userPicture: this.user.profilePicture,
       currentPassword: undefined,
       newPassword: undefined,
@@ -227,7 +232,7 @@ export default {
     },
     saveSettings() {
       this.$ga.event('Profile Settings', 'Save settings')
-      
+
       // Get user bio data
       const delta = this.quillEditor.getContents()
       const userBio = {

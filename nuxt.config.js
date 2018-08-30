@@ -66,12 +66,14 @@ module.exports = {
     '~/plugins/filters',
     '~/plugins/slideout-panel',
     '~/plugins/vue-nav-tabs',
-    '~/plugins/click-outside'
+    '~/plugins/click-outside',
+    '~/plugins/vue-tags-input'
   ],
   /*
   ** Build configuration
   */
   build: {
+    vendor: ['@johmun/vue-tags-input'],
     /*
     ** Run ESLint on save
     */

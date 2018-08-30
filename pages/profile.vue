@@ -107,7 +107,7 @@
           </template>
           <div class="profile-category">Key Responsabilities</div>
           <div class="profile-category-content">
-            <span v-for="(responsability, index) in userResponsabilities" class="label" v-bind:class="getRandomColor()" v-bind:key="index">{{ responsability }}</span>
+            <span v-for="(responsability, index) in userResponsabilities" class="label" v-bind:class="getRandomColor()" v-bind:key="index">{{ responsability.text }}</span>
           </div>
         </div>
       </div>
