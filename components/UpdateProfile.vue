@@ -115,6 +115,7 @@
 
 <script>
 import SlidePanelHeader from '~/components/SlidePanelHeader.vue'
+import 'quill-emoji/dist/quill-emoji'
 import { Picker } from 'emoji-mart-vue'
 
 export default {
@@ -289,21 +290,31 @@ export default {
     },
     onClose(options) {
       this.$emit('closePanel', options);
+    },
+    setupQuill() {
+      this.quillEditor = new Quill('#editor', {
+        modules: {
+          toolbar: {
+            container: '#toolbar'
+          },
+          magicUrl: true,
+          markdownShortcuts: {},
+          short_name_emoji: true
+        },
+        theme: 'snow'
+      })
+
+      this.quillEditor.on('text-change', () => {
+        this.showEmojiPicker = false
+      });
+
+      this.quillEditor.setContents(this.userBio.delta)
     }
   },
   mounted() {
     $('[data-toggle="tooltip"]').tooltip({ boundary: 'window' })
 
-    this.quillEditor = new Quill('#editor', {
-      modules: {
-        toolbar: {
-          container: '#toolbar'
-        }
-      },
-      theme: 'snow'
-    })
-
-    this.quillEditor.setContents(this.userBio.delta)
+    this.setupQuill()
   }
 }
 </script>

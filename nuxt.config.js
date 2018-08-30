@@ -87,11 +87,12 @@ module.exports = {
     }
   },
   css: [
-    '@/node_modules/bootstrap/scss/bootstrap.scss',
-    '@/node_modules/@fortawesome/fontawesome-free/css/all.css',
+    'bootstrap/scss/bootstrap.scss',
+    '@fortawesome/fontawesome-free/css/all.css',
     '@/assets/index.scss',
     'quill/dist/quill.core.css',
     'quill/dist/quill.snow.css',
-    'quill/dist/quill.bubble.css'
+    'quill/dist/quill.bubble.css',
+    '@/node_modules/quill-emoji/dist/quill-emoji.css'
   ]
 }

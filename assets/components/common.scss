@@ -146,6 +146,19 @@
     }
   }
 }
+
+.emoji_completions {
+  z-index: 2;
+  padding: 12px;
+}
+
+.ql-container {
+  .emoji_completions > li > button {
+    background-color: transparent;
+    padding: 6px;
+  }
+}
+
 .emoji-mart-search {
   margin: 10px 6px;
 
