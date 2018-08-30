@@ -64,6 +64,7 @@ module.exports = {
   plugins: [
     '~/plugins/quill-editor',
     '~/plugins/filters',
+    '~/plugins/emoji-picker',
     '~/plugins/slideout-panel',
     '~/plugins/vue-nav-tabs',
     '~/plugins/click-outside',

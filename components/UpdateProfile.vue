@@ -120,7 +120,6 @@
 <script>
 import SlidePanelHeader from '~/components/SlidePanelHeader.vue'
 import 'quill-emoji/dist/quill-emoji'
-import { Picker } from 'emoji-mart-vue'
 
 export default {
   props: {
@@ -175,8 +174,7 @@ export default {
     }
   },
   components: {
-    SlidePanelHeader,
-    Picker
+    SlidePanelHeader
   },
   computed: {
     profilePicture() {
