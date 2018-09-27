@@ -74,7 +74,6 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    vendor: ['@johmun/vue-tags-input'],
     /*
     ** Run ESLint on save
     */
