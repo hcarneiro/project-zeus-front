@@ -1,44 +1,126 @@
-html {
-  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+// Import custom font from Google
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i');
+
+// Override / set color variables
+$white: #fff;
+$black: #000;
+$green: #00e389;
+$blue: #3399ff;
+$orange: #f26c22;
+$yellow: #ffbf25;
+$red: #e5001e;
+$dark-grey: #333333;
+$light-grey: lighten($black, 60%); // #999999
+
+$brand-primary: #03A9F4;
+$brand-secondary: #455A64;
+$brand-tertiary: #009688;
+
+$secondaryBackground: #f4f7f8;
+
+// Page transitions
+.page-enter-active,
+.page-leave-active {
+  transition: opacity .2s
+}
+.page-enter,
+.page-leave-active {
+  opacity: 0
 }
 
-*, *:before, *:after {
-  box-sizing: border-box;
-  margin: 0;
+// Base styles
+html,
+body,
+#__nuxt,
+#__layout {
+  height: 100%;
 }
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
+body {
+  font-family: 'Ubuntu', 'Helvetica', sans-serif;
+  color: $dark-grey;
 }
 
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
+a {
+  color: $brand-primary;
+
+  &:hover {
+    color: darken($brand-primary, 10%);
+  }
 }
 
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
+.btn {
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 50px;
+
+  &.btn-primary {
+    background-color: $brand-primary;
+    border: 1px solid $brand-primary;
+    color: $white;
+
+    &:hover,
+    &:active,
+    &:active:hover,
+    &:active:focus,
+    &:not(:disabled):not(.disabled):active {
+      background-color: darken($brand-primary, 10%);
+      border-color: darken($brand-primary, 10%);
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  &.btn-secondary {
+    border: 1px solid $light-grey;
+    color: $light-grey;
+
+    &:hover,
+    &:active,
+    &:active:hover,
+    &:active:focus,
+    &:not(:disabled):not(.disabled):active {
+      background-color: $light-grey;
+      border-color: $light-grey;
+      color: $white;
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  &.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: default;
+  }
 }
 
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
+.loading-spinner {
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+}
+.loading-spinner:after {
+  content: " ";
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 5px solid $brand-primary;
+  border-color: $brand-primary transparent $brand-primary transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

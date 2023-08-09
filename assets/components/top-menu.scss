@@ -1,0 +1,186 @@
+.user-profile-container {
+  .main-top-header {
+    background-color: $secondaryBackground;
+  }
+}
+
+.main-top-header {
+  width: 100%;
+  display: flex;
+  padding: 15px 30px;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: $white;
+  border-left: 1px solid $secondaryBackground;
+
+  .tasks-title {
+    margin: 0;
+  }
+
+  .top-header-controls {
+    display: flex;
+  }
+
+  .header-search-holder {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 40px;
+    text-align: center;
+    font-size: 1em;
+    cursor: pointer;
+    margin-left: 50px;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, .2);
+    color: lighten($black, 70%);
+    background-color: $white;
+    transition: width .15s ease-in-out;
+    overflow: hidden;
+    transition: all 0.2s ease-in-out;
+
+    &:active {
+      box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, .1);
+    }
+
+    .search-holder {
+      i {
+        position: absolute;
+        top: 0;
+        text-align: center;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        z-index: 1;
+
+        &.search-icon {
+          left: 0;
+          color: lighten($black, 70%);
+        }
+
+        &.clear-icon {
+          display: none;
+          right: 0;
+          opacity: 0.3;
+          cursor: pointer;
+        }
+      }
+
+      .header-search {
+        display: none;
+        height: 40px;
+        border-radius: 50px;
+        width: 300px;
+        padding-left: 40px;
+        padding-right: 40px;
+        border: none;
+
+        &:hover,
+        &:focus {
+          box-shadow: none;
+        }
+
+        &.searching {
+          + .clear-icon {
+            display: block;
+          }
+        }
+      }
+    }
+
+    &.active {
+      width: 300px;
+
+      .header-search {
+        display: block;
+      }
+    }
+  }
+
+  .notification-holder {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 1.7em;
+    cursor: pointer;
+    margin-left: 30px;
+
+    .notification-alert {
+      position: absolute;
+      z-index: 1;
+      top: 5px;
+      right: 5px;
+      background-color: $red;
+      border: 3px solid $white;
+      width: 14px;
+      height: 14px;
+      border-radius: 14px;
+    }
+
+    i {
+      transform: rotate(20deg);
+      opacity: 0.8;
+    }
+  }
+
+  .profile-holder {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    margin-left: 30px;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, .3);
+    background-color: $white;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.2s ease-in-out;
+
+    &:after {
+      display: none;
+    }
+
+    &:active {
+      box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, .1);
+    }
+
+    .profile-picture {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40px;
+      height: 40px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+    }
+  }
+
+  .profile-dropdown {
+    margin-top: 10px;
+    width: 250px;
+    font-size: 13px;
+    border: 1px solid lighten($dark-grey, 70%);
+    box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.06);
+
+    .dropdown-header {
+      font-size: 18px;
+    }
+
+    .dropdown-item {
+      height: 40px;
+      display: flex;
+      align-items: center;
+      padding: 0 10px 0 30px;
+
+      &:hover,
+      &:focus {
+        background-color: $brand-primary;
+        color: $white;
+      }
+    }
+  }
+}

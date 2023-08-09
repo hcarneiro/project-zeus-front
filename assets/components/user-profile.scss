@@ -1,0 +1,577 @@
+.user-profile-sidebar {
+  padding-top: 70px;
+
+  .user-profile-picture-holder {
+    position: relative;
+
+    .user-picture-holder {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 150px;
+      height: 150px;
+      font-size: 3em;
+      border-radius: 50%;
+      margin: 0 auto;
+      box-shadow: 0px 6px 40px 4px rgba(0, 0, 0, .2);
+      background-color: $white;
+      overflow: hidden;
+
+      .user-profile-picture {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        background-color: $white;
+      }
+    }
+
+    .go-back,
+    .edit-profile {
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1;
+      transition: all 0.2s ease-in-out;
+
+      &:active {
+        box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, .1);
+      }
+    }
+
+    .edit-profile {
+      width: 40px;
+      height: 40px;
+      background-color: $yellow;
+      color: $white;
+      position: absolute;
+      bottom: -10px;
+      right: 20px;
+      font-size: 1.1em;
+      box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, .2);
+    }
+
+    .go-back {
+      width: 55px;
+      height: 55px;
+      background-color: $white;
+      color: $light-grey;
+      position: absolute;
+      left: 30px;
+      top: -40px;
+      font-size: 1.6em;
+      box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, .1);
+    }
+  }
+
+  .user-profile-info {
+    padding: 40px 0 10px 80px;
+
+    .user-name {
+      font-size: 25px;
+    }
+
+    .user-title {
+      color: $light-grey;
+    }
+  }
+}
+
+.profile-view {
+  height: calc(100% - 70px);
+  display: flex;
+
+  .user-profile-dashboard {
+    width: 60%;
+    overflow: auto;
+    padding: 30px;
+  }
+
+  .user-details-holder {
+    width: 40%;
+    padding: 30px;
+
+    .profile-category {
+      color: lighten($dark-grey, 50%);
+      margin-bottom: 5px;
+    }
+
+    .profile-category-content {
+      margin-bottom: 30px;
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.profile-card {
+  background-color: $white;
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, .1);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .card-title {
+    color: $light-grey;
+  }
+
+  .card-profiles-holder {
+    display: flex;
+    justify-content: space-between;
+    overflow-x: auto;
+    margin: 0 -20px;
+    
+    .card-profiles-user {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 0 10px;
+
+      &:first-child {
+        padding-left: 20px;
+      }
+
+      &:last-child {
+        padding-right: 20px;
+      }
+
+      .card-profiles-picture-holder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+        overflow: hidden;
+        background-color: lighten($black, 90%);
+
+        .card-profiles-picture {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 60px;
+          height: 60px;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center center;
+        }
+      }
+
+      p {
+        font-size: 0.8em;
+        margin: 0;
+      }
+    }
+  }
+
+  .card-teams-holder {
+    display: flex;
+    justify-content: space-between;
+    overflow-x: auto;
+    margin: 0 -20px;
+
+    .card-team {
+      position: relative;
+      padding: 0 10px;
+
+      &:first-child {
+        padding-left: 20px;
+
+        .team-info {
+          left: 20px;
+        }
+      }
+
+      &:last-child {
+        padding-right: 20px;
+
+        .team-info {
+          right: 20px;
+        }
+      }
+
+      .card-team-picture-holder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        overflow: hidden;
+
+        .card-team-picture {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center center;
+        }
+
+        &:after {
+          content: '';
+          display: block;
+          position: absolute;
+          bottom: 0;
+          top: 0;
+          left: 0;
+          right: 0;
+          background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+          background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%);
+          background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%);
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#cc000000',GradientType=0 );
+        }
+      }
+
+      .team-info {
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        bottom: 0;
+        padding-top: 20px;
+        padding-bottom: 34px;
+        text-align: center;
+        color: $white;
+        text-shadow: 0px 2px 8px rgba(0, 0, 0, .8);
+
+        p {
+          margin: 0;
+        }
+
+        p + p {
+          font-size: 0.8em;
+        }
+      }
+
+      &.owner {
+        .team-owner {
+          display: block;
+        }
+      }
+
+      .team-owner {
+        display: none;
+        position: absolute;
+        top: 20px;
+        left: 0;
+        right: 0;
+        width: 80px;
+        padding: 2px 10px;
+        margin: 0 auto;
+        border-radius: 20px;
+        text-align: center;
+        background-color: $white;
+        box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, .1);
+      }
+    }
+  }
+}
+
+.label {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 40px;
+  margin-right: 10px;
+
+  &.label-primary {
+    color: $white;
+    background-color: $brand-primary;
+  }
+
+  &.label-yellow {
+    color: $white;
+    background-color: $yellow;
+  }
+
+  &.label-warning {
+    color: $white;
+    background-color: $orange;
+  }
+
+  &.label-danger {
+    color: $white;
+    background-color: $red;
+  }
+
+  &.label-success {
+    color: $white;
+    background-color: $green;
+  }
+}
+
+.vue-tabs {
+  height: 100%;
+
+  .nav-tabs-wrapper {
+    .nav-tabs {
+      border-bottom: 1px solid lighten($black, 90%);
+      padding: 0 15px;
+
+      & > li {
+        padding: 0 15px;
+        margin-bottom: 5px;
+
+        &.active {
+          & > a {
+            color: $light-grey;
+            border-bottom: 4px solid $brand-primary;
+
+            &:hover {
+              border-bottom: 4px solid $brand-primary;
+            }
+          }
+        }
+
+        & > a {
+          text-decoration: none;
+          color: $light-grey;
+          padding: 5px 0;
+          border-bottom: 4px solid transparent;
+
+          &:hover {
+            border-bottom: 4px solid transparent;
+          }
+        }
+      }
+    }
+  }
+
+  .tab-content {
+    height: calc(100% - 37px);
+    padding: 30px 30px;
+    overflow: auto;
+  }
+}
+
+.profile-form {
+  .update-profile-picture {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+
+    .profile-picture-controls {
+      display: flex;
+      align-items: center;
+      margin-left: 30px;
+
+      .add-picture {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+        margin: 0;
+
+        .picture-action-label {
+          display: inline-block;
+          font-size: 0.8em;
+          color: $light-grey;
+          vertical-align: middle;
+
+          &:hover {
+            color: $brand-primary;
+          }
+
+          &.uploading {
+            cursor: default;
+
+            &:hover {
+              color: $light-grey;
+            }
+          }
+        }
+
+        .add-picture-separator {
+          display: inline-block;
+          color: $light-grey;
+          cursor: default;
+          padding-left: 5px;
+          padding-right: 5px;
+          vertical-align: middle;
+        }
+      }
+    }
+
+    .photo-upload-form {
+      display: none;
+    }
+
+    .user-picture-holder {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 100px;
+      font-size: 3em;
+      border-radius: 50%;
+      border: 1px solid #ccc;
+      background-color: $white;
+      overflow: hidden;
+
+      .user-profile-picture {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        background-color: $white;
+      }
+    }
+  }
+
+  .profile-form-field {
+    position: relative;
+    margin: 0 0 30px 0;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    label {
+      margin: 0;
+      padding-right: 40px;
+      color: $light-grey;
+    }
+
+    input,
+    textarea {
+      border-radius: 0;
+      border: none;
+      border-bottom: 1px solid lighten($black, 90%);
+      padding: 10px 40px 8px 0;
+      height: auto;
+      box-shadow: none;
+      font-size: 1.2em;
+
+      resize: none;
+
+      &:focus,
+      &:active:focus {
+        box-shadow: none;
+        border-bottom: 1px solid $brand-primary;
+      }
+
+      &[disabled] {
+        background-color: transparent;
+        color: lighten($black, 80%);
+      }
+    }
+
+    .vue-tags-input {
+      max-width: none;
+
+      .input {
+        border: none;
+        border-bottom: 1px solid lighten($black, 90%);
+        padding: 10px 0 8px 0;
+
+        .tag {
+          background-color: $brand-primary;
+          border-radius: 40px;
+          padding: 8px 8px 8px 12px;
+        }
+
+        .new-tag-input-wrapper {
+          input {
+            &:focus,
+            &:active:focus {
+              box-shadow: none;
+              border-bottom: none;
+            }
+          }
+        }
+      }
+    }
+
+    .ql-container.ql-snow {
+      border: none;
+      font-size: 1.2em;
+
+      .ql-editor {
+        padding: 10px 0;
+        color: #495057;
+      }
+    }
+
+    .ql-toolbar.ql-snow {
+      border: none;
+      padding: 10px 0;
+      border-top: 1px solid lighten($black, 90%);
+
+      .quill-button {
+        &.emoji-trigger {
+          display: inline-block;
+          float: left;
+          height: 24px;
+          padding: 3px 5px;
+          line-height: 0;
+          cursor: pointer;
+
+          path {
+            fill: lighten($black, 70%);
+            stroke: lighten($black, 70%);
+          }
+        }
+
+        .ql-fill {
+          fill: lighten($black, 70%);
+        }
+
+        .ql-stroke {
+          stroke: lighten($black, 70%);
+        }
+
+        &:hover {
+          &.emoji-trigger {
+            path {
+              fill: lighten($black, 30%);
+              stroke: lighten($black, 30%);
+            }
+          }
+
+          .ql-fill {
+            fill: lighten($black, 30%);
+          }
+
+          .ql-stroke {
+            stroke: lighten($black, 30%);
+          }
+        }
+      }
+
+      .emoji-mart {
+        position: fixed;
+        z-index: 1;
+        bottom: 30px;
+        right: 30px;
+      }
+    }
+  }
+
+  .btn {
+    min-width: 150px;
+  }
+}

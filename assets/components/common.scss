@@ -1,0 +1,186 @@
+.view-heading {
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .heading-title-holder {
+    display: flex;
+    align-items: center;
+
+    &.inbox-page {
+      align-items: flex-end;
+    }
+
+    h1 {
+      font-size: 30px;
+      font-weight: normal;
+      margin: 0;
+    }
+
+    .task-add {
+      background-color: $yellow;
+      color: $white;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 1.2em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 25px;
+      cursor: pointer;
+      box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, .1);
+      transition: all 0.2s ease-in-out;
+
+      &:active {
+        box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, .1);
+      }
+
+      &.active {
+        i {
+          transform: rotate(225deg);
+        }
+      }
+
+      i {
+        transition: all 0.2s ease-in-out;
+      }
+    }
+
+    .archive-activity {
+      color: $light-grey;
+      margin-left: 20px;
+      cursor: pointer;
+
+      &:hover {
+        color: $brand-primary;
+      }
+    }
+  }
+  
+  .heading-filters {
+    display: flex;
+    align-items: center;
+
+    .task-filter {
+      background-color: $white;
+      color: lighten($dark-grey, 40%);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 1.2em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, .1);
+
+      transition: all 0.2s ease-in-out;
+
+      &:active {
+        box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, .1);
+      }
+    }
+
+    .project-type-toogle {
+      position: relative;
+      background-color: lighten($dark-grey, 70%);
+      border-radius: 20px;
+      height: 40px;
+      line-height: 40px;
+      margin-left: 25px;
+
+      label {
+        margin: 0;
+        padding: 0 15px;
+        cursor: pointer;
+
+        .filter-slider {
+          position: absolute;
+          top: 4px;
+          right: auto;
+          bottom: 4px;
+          left: 4px;
+          width: 111px;
+          z-index: 0;
+          pointer-events: all;
+          background-color: $brand-primary;
+          border-radius: 20px;
+          transform: translateX(0px);
+          transition: all 0.2s ease-in-out;
+        }
+
+        .filter-label {
+          position: relative;
+          z-index: 1;
+          display: inline-block;
+          width: 90px;
+          text-align: center;
+          pointer-events: all;
+          transition: all 0.2s ease-in-out;
+          user-select: none;
+          color: $light-grey;
+        }
+
+        .filter-label + .filter-label {
+          margin-left: 20px;
+        }
+
+        input {
+          display: none;
+
+          &:checked ~ .filter-slider {
+            transform: translateX(111px);
+          }
+
+          & ~ .filter-label:nth-child(3),
+          &:checked ~ .filter-label:last-child {
+            color: $white;
+          }
+          &:checked ~ .filter-label:nth-child(3) {
+            color: $light-grey;
+          }
+        }
+      }
+    }
+  }
+}
+
+.emoji_completions {
+  z-index: 2;
+  padding: 12px;
+}
+
+.ql-container {
+  .emoji_completions > li > button {
+    background-color: transparent;
+    padding: 6px;
+  }
+}
+
+.emoji-mart-search {
+  margin: 10px 6px;
+
+  input {
+    padding: .5em 1em !important;
+    border-color: #afafaf !important;
+
+    &:focus {
+      border: 1px solid #03A9F4 !important;
+    }
+  }
+}
+
+.emoji-mart-category-label {
+  color: #999999;
+  font-size: 0.8em;
+}
+
+.emoji-mart-anchor {
+  cursor: pointer;
+
+  path {
+    fill: #afafaf;
+  }
+}

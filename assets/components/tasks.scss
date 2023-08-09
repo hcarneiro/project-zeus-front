@@ -1,0 +1,174 @@
+// Variations
+@mixin task-progress-variant($color) {
+  p { color: $color; }
+
+  span { background-color: $color; }
+}
+
+$gap: 30px;
+$list-width: 350px;
+$scrollbar-thickness: 17px;
+$list-header-height: 36px;
+$list-footer-height: 36px;
+$border-radius: 10px;
+
+.content-view-holder {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  .tasks-container {
+    width: 100%;
+    height: calc(100vh - 174px);
+    display: grid;
+
+    .lists {
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+
+      > * {
+        flex: 0 0 auto;
+        margin-left: $gap;
+      }
+      &::after {
+        content: '';
+        flex: 0 0 $gap;
+      }
+    }
+
+    .list {
+      width: $list-width;
+      height: calc(100% - #{$gap});
+
+      .list-inner {
+        display: flex;
+        flex-direction: column;
+        max-height: 100%;
+        background-color: $white;
+        border-radius: $border-radius;
+        padding: 20px 20px 0;
+        box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, .1);
+        overflow: hidden;
+      }
+
+      header {
+        font-size: 20px;
+      }
+
+      .project-progress-bar {
+        margin-top: 10px;
+        max-height: 6px;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 30px 0 20px;
+        overflow-y: auto;
+
+        .task-drag-area {
+          min-height: 10px;
+
+          span {
+            display: block;
+            min-height: 10px;
+          }
+        }
+
+        .task-item {
+          transition: all 0.2s;
+        }
+
+        .taks-enter, .task-leave-active {
+          opacity: 0;
+        }
+
+        li {
+          background-color: #fff;
+          padding: 10px;
+
+          &:not(:last-child) {
+            margin-bottom: 10px;
+          }
+
+          border-radius: $border-radius;
+          border: 1px solid lighten($dark-grey, 70%);
+
+          .task-due {
+            opacity: 0.4;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+          }
+
+          .task-title {
+            font-size: 1em;
+            font-weight: normal;
+          }
+
+          .task-bottom-holder {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+
+            .task-assigned {
+              p {
+                opacity: 0.3;
+                font-size: 0.9em;
+                margin-bottom: 5px;
+              }
+
+              .task-profiles {
+                display: flex;
+
+                .assigned-profile-holder {
+                  width: 30px;
+                  height: 30px;
+                  border-radius: 25px;
+                  border: 2px solid #fff;
+                  background-size: cover;
+                  background-position: center center;
+                  background-repeat: no-repeat;
+
+                  & ~ .assigned-profile-holder {
+                    margin-left: -10px;
+                  }
+                }
+              }
+            }
+
+            .task-progress {
+              text-align: right;
+
+              &.info {
+                @include task-progress-variant($brand-primary);
+              }
+              &.hold {
+                @include task-progress-variant($brand-secondary);
+              }
+              &.danger {
+                @include task-progress-variant($red);
+              }
+              &.success {
+                @include task-progress-variant($green);
+              }
+
+              p {
+                font-size: 0.9em;
+                margin-bottom: 5px;
+              }
+
+              span {
+                display: inline-block;
+                font-size: 0.9em;
+                color: $white;
+                padding: 6px 12px;
+                border-radius: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

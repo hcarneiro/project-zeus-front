@@ -1,0 +1,30 @@
+.page-container,
+.sidebar-component,
+.view-component {
+  height: 100%;
+}
+
+.page-container {
+  display: flex;
+}
+
+.sidebar-component,
+.user-profile-sidebar {
+  position: relative;
+  width: 262px;
+  min-width: 262px;
+  overflow: auto;
+}
+
+.view-component,
+.profile-view-holder {
+  position: relative;
+  width: 100%;
+  background-color: $secondaryBackground;
+}
+
+.user-profile-container {
+  background-color: $secondaryBackground;
+  display: flex;
+  height: 100%;
+}
